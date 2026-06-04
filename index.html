@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="スマホで撮って送るだけ。あなたの素材をショート動画にして勝手に伸ばします。月5本〜対応。医療機関・TV局にも選ばれたMITELCOCCIのショート動画制作サービス。">
+  <meta name="keywords" content="ショート動画制作,SNS動画編集,YouTube Shorts,TikTok編集,リール制作,動画編集代行">
+  <meta property="og:title" content="ショート動画制作サービス | MITELCOCCI">
+  <meta property="og:description" content="スマホで撮って送るだけ。あなたの素材をショート動画にして勝手に伸ばします。1本4,800円〜">
+  <meta property="og:type" content="website">
+  <title>ショート動画制作サービス | MITELCOCCI（みてるこっち）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f2040;
+      --navy-light: #162a52;
+      --gold: #d4a520;
+      --gold-light: #f0c040;
+      --white: #ffffff;
+      --gray: #c8d4e8;
+      --plan-light: #e85c6a;
+      --plan-mid: #f59e0b;
+      --plan-premium: #84cc16;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--navy);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212, 165, 32, 0.3);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    .logo span { color: var(--white); font-size: 0.7rem; display: block; font-weight: 400; letter-spacing: 0.1em; }
+
+    .header-cta {
+      background: #06c755;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .header-cta:hover { opacity: 0.85; }
+    .header-cta svg { width: 18px; height: 18px; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,165,32,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(30,80,160,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212,165,32,0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 6px 20px;
+      border-radius: 24px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 8vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .hero h1 .accent { color: var(--gold-light); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 40px;
+    }
+    .hero-tagline em {
+      color: var(--gold-light);
+      font-style: normal;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .hero-price-box {
+      background: rgba(15, 32, 64, 0.8);
+      border: 1px solid rgba(212,165,32,0.4);
+      border-radius: 16px;
+      padding: 24px 40px;
+      margin-bottom: 36px;
+      display: inline-block;
+    }
+
+    .hero-price-box .label { font-size: 0.8rem; color: var(--gray); margin-bottom: 4px; }
+
+    .hero-price-box .price {
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      font-weight: 900;
+      color: var(--plan-light);
+    }
+
+    .hero-price-box .price sup { font-size: 0.5em; vertical-align: super; }
+    .hero-price-box .price sub { font-size: 0.4em; color: var(--gray); vertical-align: bottom; }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #06c755;
+      color: #fff;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(6,199,85,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(6,199,85,0.45); }
+
+    .hero-note { margin-top: 16px; font-size: 0.8rem; color: var(--gray); }
+
+    /* ── Section base ── */
+    section { padding: 80px 24px; }
+
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .section-title .underline {
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 4px;
+    }
+
+    .section-lead {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 48px;
+      font-size: 0.95rem;
+    }
+
+    /* ── Problem ── */
+    .problem { background: var(--navy-mid); }
+
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid var(--plan-light);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 20px;
+      font-size: 1rem;
+    }
+
+    .problem-item .check { color: var(--plan-light); font-size: 1.2rem; flex-shrink: 0; }
+
+    .problem-answer {
+      text-align: center;
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      font-weight: 900;
+      line-height: 1.4;
+    }
+    .problem-answer em { color: var(--gold-light); font-style: normal; }
+
+    /* ── Reasons ── */
+    .reasons { background: var(--navy); }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .reason-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(212,165,32,0.2);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .reason-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+
+    .reason-card .point-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .reason-card .icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+    .reason-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .reason-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── How it works ── */
+    .how { background: var(--navy-mid); }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 48px;
+      bottom: 48px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .step-body p { font-size: 0.9rem; color: var(--gray); }
+
+    /* ── Pricing ── */
+    .pricing { background: var(--navy); }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .plan-card {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid;
+      position: relative;
+    }
+
+    .plan-card.light { border-color: var(--plan-light); }
+    .plan-card.mid { border-color: var(--plan-mid); transform: scale(1.02); }
+    .plan-card.premium { border-color: var(--plan-premium); }
+
+    .plan-card.mid .popular-badge {
+      position: absolute;
+      top: 0; right: 0;
+      background: var(--plan-mid);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 4px 14px 4px 20px;
+      border-radius: 0 0 0 16px;
+    }
+
+    .plan-header {
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+
+    .plan-card.light .plan-header { background: rgba(232,92,106,0.15); }
+    .plan-card.mid .plan-header { background: rgba(245,158,11,0.15); }
+    .plan-card.premium .plan-header { background: rgba(132,204,22,0.15); }
+
+    .plan-name {
+      font-weight: 900;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .plan-card.light .plan-name { color: var(--plan-light); }
+    .plan-card.mid .plan-name { color: var(--plan-mid); }
+    .plan-card.premium .plan-name { color: var(--plan-premium); }
+
+    .plan-price {
+      font-size: 2.2rem;
+      font-weight: 900;
+    }
+    .plan-price sup { font-size: 0.5em; vertical-align: super; }
+    .plan-price sub { font-size: 0.4em; color: var(--gray); vertical-align: bottom; }
+
+    .plan-body {
+      background: var(--navy-light);
+      padding: 24px 20px;
+    }
+
+    .plan-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem;
+    }
+    .plan-row:last-child { border-bottom: none; }
+    .plan-row .key { color: var(--gray); }
+    .plan-row .val { font-weight: 700; }
+
+    .val-yes { color: var(--plan-premium); }
+    .val-no { color: rgba(255,255,255,0.25); }
+
+    /* ── Options ── */
+    .options { background: var(--navy-mid); }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .option-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,165,32,0.2);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .option-card h4 {
+      color: var(--gold-light);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .option-card p { font-size: 0.85rem; color: var(--gray); }
+    .option-card .opt-price { font-weight: 700; color: var(--white); }
+
+    /* ── Works ── */
+    .works { background: var(--navy); }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .work-card {
+      background: var(--navy-light);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .work-thumb {
+      aspect-ratio: 9/16;
+      max-height: 280px;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .work-info { padding: 16px; }
+    .work-info h4 { font-size: 0.9rem; margin-bottom: 4px; }
+    .work-info p { font-size: 0.8rem; color: var(--gray); }
+
+    /* ── About ── */
+    .about { background: var(--navy-mid); }
+
+    .about-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .about-photo {
+      flex-shrink: 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: var(--navy-light);
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--gray);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .about-text { flex: 1; min-width: 240px; }
+    .about-text h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 4px; }
+    .about-text .tagline { color: var(--gold-light); font-size: 0.9rem; margin-bottom: 16px; }
+    .about-text p { color: var(--gray); font-size: 0.9rem; line-height: 1.8; }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .badge {
+      background: rgba(212,165,32,0.1);
+      border: 1px solid rgba(212,165,32,0.3);
+      color: var(--gold-light);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+      text-align: center;
+      padding: 80px 24px;
+      border-top: 1px solid rgba(212,165,32,0.3);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .cta-highlight {
+      display: inline-block;
+      background: rgba(6,199,85,0.1);
+      border: 1px solid #06c755;
+      border-radius: 12px;
+      padding: 20px 32px;
+      margin: 24px auto;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .cta-highlight .free { color: #06c755; font-size: 1.5rem; }
+
+    .cta-btn-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #06c755;
+      color: #fff;
+      padding: 20px 48px;
+      border-radius: 50px;
+      font-weight: 900;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 8px 40px rgba(6,199,85,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+    }
+    .cta-btn-large:hover { transform: translateY(-3px); box-shadow: 0 12px 50px rgba(6,199,85,0.5); }
+
+    .cta-steps {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .cta-steps span { display: flex; align-items: center; gap: 6px; }
+    .cta-steps .num { color: var(--gold-light); font-weight: 700; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo { font-size: 1.4rem; font-weight: 900; color: var(--gold-light); margin-bottom: 8px; }
+    .footer-tagline { font-size: 0.85rem; color: var(--gray); margin-bottom: 24px; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    /* ── FAQ ── */
+    .faq { background: var(--navy); }
+
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .faq-item {
+      background: var(--navy-light);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 18px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 20px 18px;
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .about-inner { flex-direction: column; text-align: center; }
+      .trust-badges { justify-content: center; }
+      .steps::before { display: none; }
+      .plan-card.mid { transform: none; }
+      .hero-price-box { padding: 18px 24px; }
+    }
+
+    /* Scroll animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    MITELCOCCI
+    <span>みてるこっちが楽しくなる♪</span>
+  </div>
+  <a href="#cta" class="header-cta">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    LINE無料相談
+  </a>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">スマホで撮って送るだけ！</div>
+  <h1>
+    ショート動画で<br>
+    <span class="accent">SNSを</span><br>
+    勝手に伸ばします
+  </h1>
+  <p class="hero-sub">SNSに何を上げればいいかわからない社長へ</p>
+  <p class="hero-tagline">あなたの素材を<em>"ショート動画にして勝手に伸ばします"</em></p>
+
+  <div class="hero-price-box">
+    <div class="label">基本価格（税別）</div>
+    <div class="price"><sup>1本</sup>4,800<sub>円〜</sub></div>
+  </div>
+
+  <a href="#cta" class="hero-cta">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    今すぐLINEで無料相談
+  </a>
+  <p class="hero-note">月5本〜対応 ／ 初回設計費10,000円→LINE登録で無料</p>
+</section>
+
+<!-- Problem -->
+<section class="problem">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">こんなお悩みありませんか？</span></h2>
+    <p class="section-lead">SNSで発信したいけど、何をすればいいかわからない経営者の方へ</p>
+
+    <div class="problem-list">
+      <div class="problem-item">
+        <span class="check">✗</span>
+        <span>SNSに何を投稿すればいいかわからない</span>
+      </div>
+      <div class="problem-item">
+        <span class="check">✗</span>
+        <span>動画編集に時間がかかって本業に集中できない</span>
+      </div>
+      <div class="problem-item">
+        <span class="check">✗</span>
+        <span>撮影したけど投稿できずにデータが溜まっている</span>
+      </div>
+      <div class="problem-item">
+        <span class="check">✗</span>
+        <span>継続できなくて結局やめてしまった</span>
+      </div>
+      <div class="problem-item">
+        <span class="check">✗</span>
+        <span>編集会社に頼むとコストが高すぎる</span>
+      </div>
+    </div>
+
+    <p class="problem-answer">
+      それ、全部<em>MITELCOCCIが解決します。</em><br>
+      スマホで撮って送るだけ。<br>
+      あとはお任せください。
+    </p>
+  </div>
+</section>
+
+<!-- Reasons -->
+<section class="reasons">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">選ばれる4つの理由</span></h2>
+    <p class="section-lead">個人運営だからこそできる、丁寧で高品質なサービス</p>
+
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="point-badge">point 1</div>
+        <div class="icon">🏆</div>
+        <h3>だから！"確かな信頼"</h3>
+        <p>医療機関・TV局にも選ばれた実績。専門テーマも正確に対応できる品質で制作します。</p>
+      </div>
+      <div class="reason-card">
+        <div class="point-badge">point 2</div>
+        <div class="icon">💎</div>
+        <h3>なのに！"圧倒的コスパ"</h3>
+        <p>高品質でも続けやすい価格設定。SNS投稿を無理なく習慣化できます。</p>
+      </div>
+      <div class="reason-card">
+        <div class="point-badge">point 3</div>
+        <div class="icon">📱</div>
+        <h3>とにかく！"丸投げで楽"</h3>
+        <p>撮った素材を送るだけ。忙しい経営者でも負担ゼロでSNS発信を継続できます。</p>
+      </div>
+      <div class="reason-card">
+        <div class="point-badge">point 4</div>
+        <div class="icon">▶️</div>
+        <h3>そのまま！"活用できる"</h3>
+        <p>今ある動画もそのまま活用可能。負担ゼロでショート動画化が可能です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="how">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">ご依頼の流れ</span></h2>
+    <p class="section-lead">最短3ステップで完成まで</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>LINE友達追加 → 無料相談</h3>
+          <p>LINEを登録してトーク画面からメッセージを送ってください。現在の状況やご希望をヒアリングします。初回設計費（10,000円）が無料になります。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>スマホで撮影 → 素材を送るだけ</h3>
+          <p>日常の業務シーンやお客様へのメッセージをスマホで撮影してLINEで送るだけ。編集はすべてお任せください。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>2週間以内に納品 → SNSに投稿</h3>
+          <p>プロの編集でショート動画に仕上げてお届けします。修正は2回まで無料で対応。あとはそのまま投稿するだけです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">料金プラン</span></h2>
+    <p class="section-lead">月5本〜 ／ すべて税別表記</p>
+
+    <div class="plans-grid">
+      <!-- Light -->
+      <div class="plan-card light">
+        <div class="plan-header">
+          <div class="plan-name">ライトプラン</div>
+          <div class="plan-price"><sup>¥</sup>4,800<sub>円/本</sub></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-row"><span class="key">素材尺</span><span class="val">〜3分</span></div>
+          <div class="plan-row"><span class="key">完成尺</span><span class="val">〜15秒</span></div>
+          <div class="plan-row"><span class="key">テロップ</span><span class="val">1色</span></div>
+          <div class="plan-row"><span class="key">画像挿入</span><span class="val val-no">—</span></div>
+          <div class="plan-row"><span class="key">アニメーション</span><span class="val val-no">—</span></div>
+          <div class="plan-row"><span class="key">BGM/効果音</span><span class="val val-no">—</span></div>
+        </div>
+      </div>
+
+      <!-- Middle -->
+      <div class="plan-card mid">
+        <div class="popular-badge">人気No.1</div>
+        <div class="plan-header">
+          <div class="plan-name">ミドルプラン</div>
+          <div class="plan-price"><sup>¥</sup>6,800<sub>円/本</sub></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-row"><span class="key">素材尺</span><span class="val">〜8分</span></div>
+          <div class="plan-row"><span class="key">完成尺</span><span class="val">〜1分</span></div>
+          <div class="plan-row"><span class="key">テロップ</span><span class="val">3色</span></div>
+          <div class="plan-row"><span class="key">画像挿入</span><span class="val">3点まで</span></div>
+          <div class="plan-row"><span class="key">アニメーション</span><span class="val val-no">—</span></div>
+          <div class="plan-row"><span class="key">BGM/効果音</span><span class="val val-yes">○</span></div>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card premium">
+        <div class="plan-header">
+          <div class="plan-name">プレミアプラン</div>
+          <div class="plan-price"><sup>¥</sup>12,800<sub>円/本</sub></div>
+        </div>
+        <div class="plan-body">
+          <div class="plan-row"><span class="key">素材尺</span><span class="val">〜20分</span></div>
+          <div class="plan-row"><span class="key">完成尺</span><span class="val">〜2分</span></div>
+          <div class="plan-row"><span class="key">テロップ</span><span class="val">多色</span></div>
+          <div class="plan-row"><span class="key">画像挿入</span><span class="val val-yes">無制限</span></div>
+          <div class="plan-row"><span class="key">アニメーション</span><span class="val val-yes">○</span></div>
+          <div class="plan-row"><span class="key">BGM/効果音</span><span class="val val-yes">○</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Options -->
+    <h3 style="font-size:1.1rem; color:var(--gold-light); margin-bottom:16px; text-align:center;">共通 &amp; オプション</h3>
+    <div class="options-grid">
+      <div class="option-card">
+        <h4>⏰ 納期</h4>
+        <p>通常：<span class="opt-price">2週間</span><br>2週間以内：<span class="opt-price">+1,000円/日</span></p>
+      </div>
+      <div class="option-card">
+        <h4>🎬 素材尺</h4>
+        <p>〜20分：標準料金<br>20分以上：<span class="opt-price">+500円/分</span></p>
+      </div>
+      <div class="option-card">
+        <h4>📦 基本本数</h4>
+        <p><span class="opt-price">月5本〜</span><br>本数が増えるほどお得に</p>
+      </div>
+      <div class="option-card">
+        <h4>✏️ 修正回数</h4>
+        <p>2回まで：無料<br>3回以上：<span class="opt-price">+500円/回</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Works (placeholder) -->
+<section class="works">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">制作実績</span></h2>
+    <p class="section-lead">医療機関・TV局・飲食店など幅広い業種に対応</p>
+
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-thumb">
+          ▶ 制作実績の動画を<br>ここに埋め込みます
+        </div>
+        <div class="work-info">
+          <h4>業種名・案件名</h4>
+          <p>ミドルプラン ／ 納期10日</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb">
+          ▶ 制作実績の動画を<br>ここに埋め込みます
+        </div>
+        <div class="work-info">
+          <h4>業種名・案件名</h4>
+          <p>プレミアプラン ／ 納期14日</p>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb">
+          ▶ 制作実績の動画を<br>ここに埋め込みます
+        </div>
+        <div class="work-info">
+          <h4>業種名・案件名</h4>
+          <p>ライトプラン ／ 納期14日</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about">
+  <div class="section-inner fade-in">
+    <h2 class="section-title" style="margin-bottom:40px;"><span class="underline">制作者について</span></h2>
+
+    <div class="about-inner">
+      <div class="about-photo">
+        <!-- 顔写真をここに入れてください -->
+        <span style="padding:16px;">顔写真<br>をここに</span>
+      </div>
+      <div class="about-text">
+        <h3>MITELCOCCI（みてるこっち）</h3>
+        <p class="tagline">みてるこっちが楽しくなる♪ ショート動画制作</p>
+        <p>
+          <!-- ここに自己紹介文を入れてください -->
+          医療機関やTV局など専門性の高いコンテンツから、中小企業のSNS発信まで幅広く対応。
+          「撮って送るだけ」のシンプルな仕組みで、忙しい経営者でも無理なくSNSを継続できるサービスを提供しています。
+        </p>
+        <div class="trust-badges">
+          <span class="badge">医療機関実績あり</span>
+          <span class="badge">TV局実績あり</span>
+          <span class="badge">月5本〜対応</span>
+          <span class="badge">個人対応で丁寧</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">よくある質問</span></h2>
+    <p class="section-lead"></p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">撮影技術がなくても大丈夫ですか？</div>
+        <div class="faq-a">はい、問題ありません。スマホで普通に撮影した素材で十分です。撮り方のアドバイスもLINEでお伝えします。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">どんな業種でも対応できますか？</div>
+        <div class="faq-a">医療・飲食・美容・サービス業・士業など幅広い業種に対応しています。専門的な内容も丁寧にヒアリングした上で制作します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">どのSNSに投稿できますか？</div>
+        <div class="faq-a">YouTube Shorts、Instagram リール、TikTok、X（Twitter）など縦型ショート動画に対応するSNSすべてに使えます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">月5本以下でも依頼できますか？</div>
+        <div class="faq-a">基本は月5本〜のご契約となります。まずはご相談ください。状況に合わせて柔軟に対応いたします。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">既存の動画をショート動画に編集してもらえますか？</div>
+        <div class="faq-a">はい、対応しています。過去に撮影した動画や長尺の動画をショート動画に再編集することも可能です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">支払い方法は？</div>
+        <div class="faq-a">詳細はLINEにてご確認ください。銀行振込・各種決済に対応しています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="section-inner fade-in">
+    <h2>まずはLINEで<br>無料相談してみてください</h2>
+    <p style="color:var(--gray); margin-top:8px;">返信は通常24時間以内。お気軽にどうぞ。</p>
+
+    <div class="cta-highlight">
+      初回設計費 10,000円 →
+      <span class="free">LINE登録で無料！</span>
+    </div>
+
+    <br>
+    <!-- ここにLINEのURLを入れてください -->
+    <a href="https://lin.ee/XXXXXXXX" class="cta-btn-large">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINE友達追加（無料）
+    </a>
+
+    <div class="cta-steps">
+      <span><span class="num">①</span> LINE友達追加</span>
+      <span>→</span>
+      <span><span class="num">②</span>「守成クラブ」と送信</span>
+      <span>→</span>
+      <span><span class="num">③</span> 初回設計費無料！</span>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">MITELCOCCI</div>
+  <div class="footer-tagline">みてるこっちが楽しくなる♪</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    <a href="https://x.com/" target="_blank">X（Twitter）</a>
+    <a href="#cta">お問い合わせ</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 MITELCOCCI. All rights reserved.</div>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      item.classList.toggle('open');
+    });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
