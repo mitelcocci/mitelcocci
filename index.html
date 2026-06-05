@@ -596,6 +596,66 @@
 
     .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
 
+    /* ── Comparison ── */
+    .comparison { background: var(--navy-mid); }
+    .comp-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .comp-table th, .comp-table td { padding: 14px 16px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .comp-table thead th { font-size: 0.8rem; color: var(--gray); font-weight: 500; padding-bottom: 8px; }
+    .comp-table thead th.highlight { color: var(--gold-light); font-weight: 900; font-size: 0.9rem; }
+    .comp-table tbody tr:last-child td { border-bottom: none; }
+    .comp-table td:first-child { text-align: left; color: var(--gray); font-size: 0.82rem; }
+    .comp-table td.highlight { background: rgba(212,165,32,0.05); color: var(--white); font-weight: 700; }
+    .comp-table td.bad { color: rgba(255,255,255,0.25); }
+    .comp-ok { color: var(--plan-premium); }
+    .comp-no { color: rgba(255,255,255,0.2); }
+    .comp-table-wrap { overflow-x: auto; border: 1px solid rgba(212,165,32,0.2); border-radius: 16px; overflow: hidden; }
+
+    /* ── Testimonials ── */
+    .testimonials { background: var(--navy); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .testimonial-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px 24px;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 12px; left: 20px;
+      font-size: 4rem;
+      color: rgba(212,165,32,0.15);
+      font-family: serif;
+      line-height: 1;
+    }
+    .testimonial-text { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 20px; position: relative; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--navy-mid);
+      border: 2px solid rgba(212,165,32,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .testimonial-info .name { font-weight: 700; font-size: 0.88rem; }
+    .testimonial-info .role { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+    .stars { color: #f59e0b; font-size: 0.8rem; margin-bottom: 12px; }
+
+    /* ── Guarantee ── */
+    .guarantee { background: var(--navy-mid); }
+    .guarantee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .guarantee-card {
+      background: rgba(212,165,32,0.04);
+      border: 1px solid rgba(212,165,32,0.2);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .guarantee-card .g-icon { font-size: 2rem; margin-bottom: 10px; }
+    .guarantee-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--gold-light); margin-bottom: 8px; }
+    .guarantee-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.7; }
+
     /* ── FAQ ── */
     .faq { background: var(--navy); }
 
@@ -773,9 +833,9 @@
 
   <a href="#cta" class="hero-cta">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-    今すぐLINEで無料相談
+    まず1本、無料でお試しください
   </a>
-  <p class="hero-note">月5本〜対応 ／ 初回設計費10,000円→LINE登録で無料</p>
+  <p class="hero-note">LINE登録だけで1本無料制作 ／ リスクゼロでお試しいただけます</p>
 </section>
 
 <!-- Clients marquee -->
@@ -960,7 +1020,7 @@
       <div class="plan-card light">
         <div class="plan-header">
           <div class="plan-name">ライトプラン</div>
-          <div class="plan-price"><sup>¥</sup>4,800<sub>円/本</sub></div>
+          <div class="plan-price"><sup>¥</sup>6,800<sub>円/本</sub></div>
         </div>
         <div class="plan-body">
           <div class="plan-row"><span class="key">素材尺</span><span class="val">〜3分</span></div>
@@ -977,7 +1037,7 @@
         <div class="popular-badge">人気No.1</div>
         <div class="plan-header">
           <div class="plan-name">ミドルプラン</div>
-          <div class="plan-price"><sup>¥</sup>6,800<sub>円/本</sub></div>
+          <div class="plan-price"><sup>¥</sup>9,800<sub>円/本</sub></div>
         </div>
         <div class="plan-body">
           <div class="plan-row"><span class="key">素材尺</span><span class="val">〜8分</span></div>
@@ -993,7 +1053,7 @@
       <div class="plan-card premium">
         <div class="plan-header">
           <div class="plan-name">プレミアプラン</div>
-          <div class="plan-price"><sup>¥</sup>12,800<sub>円/本</sub></div>
+          <div class="plan-price"><sup>¥</sup>19,800<sub>円/本</sub></div>
         </div>
         <div class="plan-body">
           <div class="plan-row"><span class="key">素材尺</span><span class="val">〜20分</span></div>
@@ -1096,6 +1156,148 @@
   </div>
 </section>
 
+<!-- Comparison -->
+<section class="comparison">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">他社との違い</span></h2>
+    <p class="section-lead">なぜMITELCOCCIが選ばれるのか</p>
+
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>格安<br>フリーランス</th>
+            <th>動画<br>制作会社</th>
+            <th class="highlight">MITELCOCCI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>価格</td>
+            <td>〜5,000円</td>
+            <td>30,000円〜</td>
+            <td class="highlight">6,800円〜</td>
+          </tr>
+          <tr>
+            <td>品質</td>
+            <td class="bad">ムラがある</td>
+            <td>高品質</td>
+            <td class="highlight"><span class="comp-ok">●</span> TV局クオリティ</td>
+          </tr>
+          <tr>
+            <td>納期</td>
+            <td class="bad">不安定</td>
+            <td class="bad">1ヶ月〜</td>
+            <td class="highlight"><span class="comp-ok">●</span> 2週間以内</td>
+          </tr>
+          <tr>
+            <td>丸投げ対応</td>
+            <td class="bad"><span class="comp-no">✗</span></td>
+            <td class="bad"><span class="comp-no">✗</span></td>
+            <td class="highlight"><span class="comp-ok">● 完全OK</span></td>
+          </tr>
+          <tr>
+            <td>担当者</td>
+            <td class="bad">変わる</td>
+            <td class="bad">変わる</td>
+            <td class="highlight"><span class="comp-ok">●</span> ずっと同じ</td>
+          </tr>
+          <tr>
+            <td>専門テーマ対応</td>
+            <td class="bad"><span class="comp-no">✗</span></td>
+            <td>△</td>
+            <td class="highlight"><span class="comp-ok">● 医療・TV実績</span></td>
+          </tr>
+          <tr>
+            <td>無料お試し</td>
+            <td class="bad"><span class="comp-no">✗</span></td>
+            <td class="bad"><span class="comp-no">✗</span></td>
+            <td class="highlight"><span class="comp-ok">● 1本無料</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">お客様の声</span></h2>
+    <p class="section-lead">実際にご利用いただいた方からの声</p>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">スマホで撮って送るだけで本当にプロの動画になって驚きました。自分では絶対できないクオリティで、投稿後すぐに問い合わせが来ました。</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👩</div>
+          <div class="testimonial-info">
+            <div class="name">A.T. 様</div>
+            <div class="role">飲食店オーナー ／ ミドルプラン</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">医療系の専門用語も正確に扱っていただけて安心でした。他の編集者に頼んだときは修正が多くて大変でしたが、ここは一発でOKでした。</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👨</div>
+          <div class="testimonial-info">
+            <div class="name">K.H. 様</div>
+            <div class="role">クリニック院長 ／ プレミアプラン</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">月5本お願いしていますが、毎回クオリティが安定していて助かっています。社長の私が撮影するだけで、あとは全部やってくれるので本業に集中できます。</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👨‍💼</div>
+          <div class="testimonial-info">
+            <div class="name">S.M. 様</div>
+            <div class="role">コンサル会社代表 ／ ミドルプラン</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Guarantee -->
+<section class="guarantee">
+  <div class="section-inner fade-in">
+    <h2 class="section-title"><span class="underline">安心の品質保証</span></h2>
+    <p class="section-lead">リスクゼロで始められる理由</p>
+
+    <div class="guarantee-grid">
+      <div class="guarantee-card">
+        <div class="g-icon">🎁</div>
+        <h4>1本まるごと無料お試し</h4>
+        <p>LINE登録だけで1本無料制作。クオリティを確認してから継続を判断できます。</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="g-icon">✏️</div>
+        <h4>修正2回まで無料</h4>
+        <p>テロップのニュアンスや構成の変更など、2回まで追加料金なしで対応します。</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="g-icon">⏰</div>
+        <h4>納期厳守</h4>
+        <p>お約束した納期に必ずお届けします。万が一遅れた場合は料金の一部を返金。</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="g-icon">🔄</div>
+        <h4>満足保証</h4>
+        <p>クオリティにご満足いただけない場合は、再制作で対応いたします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq">
   <div class="section-inner fade-in">
@@ -1134,12 +1336,12 @@
 <!-- CTA -->
 <section class="cta-section" id="cta">
   <div class="section-inner fade-in">
-    <h2>まずはLINEで<br>無料相談してみてください</h2>
-    <p style="color:var(--gray); margin-top:8px;">返信は通常24時間以内。お気軽にどうぞ。</p>
+    <h2>まず1本、<br>無料でお試しください</h2>
+    <p style="color:var(--gray); margin-top:8px;">返信は通常24時間以内。クオリティを確認してから継続を判断できます。</p>
 
     <div class="cta-highlight">
-      初回設計費 10,000円 →
-      <span class="free">LINE登録で無料！</span>
+      LINE登録だけで →
+      <span class="free">1本まるごと無料！</span>
     </div>
 
     <br>
@@ -1152,9 +1354,9 @@
     <div class="cta-steps">
       <span><span class="num">①</span> LINE友達追加</span>
       <span>→</span>
-      <span><span class="num">②</span>「守成クラブ」と送信</span>
+      <span><span class="num">②</span> 素材を撮って送る</span>
       <span>→</span>
-      <span><span class="num">③</span> 初回設計費無料！</span>
+      <span><span class="num">③</span> 1本無料で納品！</span>
     </div>
   </div>
 </section>
