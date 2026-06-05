@@ -648,6 +648,79 @@
       .hero-price-box { padding: 18px 24px; }
     }
 
+    /* ── Clients marquee ── */
+    .clients {
+      background: var(--navy-mid);
+      padding: 40px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(212,165,32,0.15);
+      border-bottom: 1px solid rgba(212,165,32,0.15);
+    }
+    .clients-label {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+    .marquee-wrapper {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .logo-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 52px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      opacity: 0.65;
+      transition: opacity 0.25s;
+    }
+    .logo-item:hover { opacity: 1; }
+    .logo-badge {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
+      border: 1.5px solid;
+    }
+    .logo-badge.clinic  { background: rgba(80,180,255,0.08); border-color: rgba(80,180,255,0.4); color: #50b4ff; }
+    .logo-badge.coach   { background: rgba(212,165,32,0.08); border-color: rgba(212,165,32,0.4); color: #d4a520; }
+    .logo-badge.tv      { background: rgba(255,80,80,0.08);  border-color: rgba(255,80,80,0.4);  color: #ff5050; }
+    .logo-badge.career  { background: rgba(132,204,22,0.08); border-color: rgba(132,204,22,0.4); color: #84cc16; }
+    .logo-name { display: flex; flex-direction: column; }
+    .logo-name .main {
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .logo-name .sub {
+      font-size: 0.62rem;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
     #hero-canvas {
       position: absolute;
       inset: 0;
@@ -704,6 +777,73 @@
   </a>
   <p class="hero-note">月5本〜対応 ／ 初回設計費10,000円→LINE登録で無料</p>
 </section>
+
+<!-- Clients marquee -->
+<div class="clients">
+  <div class="clients-label">採用・制作実績</div>
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <!-- set 1 -->
+      <div class="logo-item">
+        <div class="logo-badge clinic">🏥</div>
+        <div class="logo-name">
+          <span class="main">細野クリニック</span>
+          <span class="sub">HOSONO CLINIC</span>
+        </div>
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge coach">🎓</div>
+        <div class="logo-name">
+          <span class="main">TCA東京コーチング協会</span>
+          <span class="sub">TOKYO COACHING ASSOCIATION</span>
+        </div>
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge tv">📺</div>
+        <div class="logo-name">
+          <span class="main">テレビ東京</span>
+          <span class="sub">TV TOKYO</span>
+        </div>
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge career">💼</div>
+        <div class="logo-name">
+          <span class="main">CRAZY CAREER</span>
+          <span class="sub">クレイジーキャリア</span>
+        </div>
+      </div>
+      <!-- set 2 (loop) -->
+      <div class="logo-item">
+        <div class="logo-badge clinic">🏥</div>
+        <div class="logo-name">
+          <span class="main">細野クリニック</span>
+          <span class="sub">HOSONO CLINIC</span>
+        </div>
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge coach">🎓</div>
+        <div class="logo-name">
+          <span class="main">TCA東京コーチング協会</span>
+          <span class="sub">TOKYO COACHING ASSOCIATION</span>
+        </div>
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge tv">📺</div>
+        <div class="logo-name">
+          <span class="main">テレビ東京</span>
+          <span class="sub">TV TOKYO</span>
+        </div>
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge career">💼</div>
+        <div class="logo-name">
+          <span class="main">CRAZY CAREER</span>
+          <span class="sub">クレイジーキャリア</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Problem -->
 <section class="problem">
