@@ -12,7 +12,7 @@
   <title>ショート動画制作サービス | MITELCOCCI（みてるこっち）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@600;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -27,6 +27,10 @@
       --plan-light: #e85c6a;
       --plan-mid: #f59e0b;
       --plan-premium: #84cc16;
+      --font-display: 'Dela Gothic One', 'Noto Sans JP', sans-serif;
+      --font-condensed: 'Oswald', sans-serif;
+      --font-serif: 'Noto Serif JP', serif;
+      --font-body: 'Noto Sans JP', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -54,13 +58,14 @@
     }
 
     .logo {
-      font-size: 1.2rem;
-      font-weight: 900;
+      font-family: var(--font-condensed);
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--gold-light);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
     }
 
-    .logo span { color: var(--white); font-size: 0.7rem; display: block; font-weight: 400; letter-spacing: 0.1em; }
+    .logo span { font-family: var(--font-body); color: var(--white); font-size: 0.65rem; display: block; font-weight: 400; letter-spacing: 0.12em; }
 
     .header-cta {
       background: #06c755;
@@ -108,18 +113,21 @@
       color: var(--gold-light);
       padding: 6px 20px;
       border-radius: 24px;
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-family: var(--font-condensed);
+      font-size: 0.9rem;
+      font-weight: 600;
       margin-bottom: 24px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.12em;
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 8vw, 4.5rem);
-      font-weight: 900;
-      line-height: 1.15;
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
       margin-bottom: 16px;
       position: relative;
+      letter-spacing: 0.02em;
     }
 
     .hero h1 .accent { color: var(--gold-light); }
@@ -154,9 +162,11 @@
     .hero-price-box .label { font-size: 0.8rem; color: var(--gray); margin-bottom: 4px; }
 
     .hero-price-box .price {
-      font-size: clamp(2rem, 7vw, 3.5rem);
-      font-weight: 900;
+      font-family: var(--font-condensed);
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      font-weight: 700;
       color: var(--plan-light);
+      letter-spacing: 0.02em;
     }
 
     .hero-price-box .price sup { font-size: 0.5em; vertical-align: super; }
@@ -186,10 +196,12 @@
     .section-inner { max-width: 900px; margin: 0 auto; }
 
     .section-title {
+      font-family: var(--font-display);
       text-align: center;
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
       margin-bottom: 12px;
+      letter-spacing: 0.03em;
     }
 
     .section-title .underline {
@@ -269,10 +281,12 @@
     .reason-card .icon { font-size: 2.5rem; margin-bottom: 12px; }
 
     .reason-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
       color: var(--gold-light);
       margin-bottom: 8px;
+      letter-spacing: 0.02em;
     }
 
     .reason-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
@@ -319,7 +333,7 @@
       z-index: 1;
     }
 
-    .step-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .step-body h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; margin-bottom: 6px; }
     .step-body p { font-size: 0.9rem; color: var(--gray); }
 
     /* ── Pricing ── */
@@ -364,17 +378,21 @@
     .plan-card.premium .plan-header { background: rgba(132,204,22,0.15); }
 
     .plan-name {
-      font-weight: 900;
-      font-size: 1.15rem;
+      font-family: var(--font-condensed);
+      font-weight: 700;
+      font-size: 1.25rem;
       margin-bottom: 8px;
+      letter-spacing: 0.08em;
     }
     .plan-card.light .plan-name { color: var(--plan-light); }
     .plan-card.mid .plan-name { color: var(--plan-mid); }
     .plan-card.premium .plan-name { color: var(--plan-premium); }
 
     .plan-price {
-      font-size: 2.2rem;
-      font-weight: 900;
+      font-family: var(--font-condensed);
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
     .plan-price sup { font-size: 0.5em; vertical-align: super; }
     .plan-price sub { font-size: 0.4em; color: var(--gray); vertical-align: bottom; }
@@ -489,7 +507,7 @@
     .about-photo img { width: 100%; height: 100%; object-fit: cover; }
 
     .about-text { flex: 1; min-width: 240px; }
-    .about-text h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 4px; }
+    .about-text h3 { font-family: var(--font-condensed); font-size: 1.7rem; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.08em; }
     .about-text .tagline { color: var(--gold-light); font-size: 0.9rem; margin-bottom: 16px; }
     .about-text p { color: var(--gray); font-size: 0.9rem; line-height: 1.8; }
 
@@ -575,7 +593,7 @@
       text-align: center;
     }
 
-    .footer-logo { font-size: 1.4rem; font-weight: 900; color: var(--gold-light); margin-bottom: 8px; }
+    .footer-logo { font-family: var(--font-condensed); font-size: 1.6rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.1em; margin-bottom: 8px; }
     .footer-tagline { font-size: 0.85rem; color: var(--gray); margin-bottom: 24px; }
 
     .footer-links {
@@ -629,7 +647,7 @@
       font-family: serif;
       line-height: 1;
     }
-    .testimonial-text { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 20px; position: relative; }
+    .testimonial-text { font-family: var(--font-serif); font-size: 0.92rem; line-height: 2; color: rgba(255,255,255,0.88); margin-bottom: 20px; position: relative; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
     .testimonial-avatar {
       width: 42px; height: 42px; border-radius: 50%;
@@ -717,9 +735,10 @@
       border-bottom: 1px solid rgba(212,165,32,0.15);
     }
     .clients-label {
+      font-family: var(--font-condensed);
       text-align: center;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
       color: var(--gray);
       margin-bottom: 28px;
     }
