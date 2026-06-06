@@ -1025,25 +1025,25 @@
       <div class="reason-card">
         <div class="point-badge">point 1</div>
         <div class="icon">🏆</div>
-        <h3>だから！"確かな信頼"</h3>
+        <h3>だから！<br>"確かな信頼"</h3>
         <p>テレビ東京・医療機関・コーチング協会など、クオリティにシビアな業界に採用された実績。専門テーマも正確に対応します。</p>
       </div>
       <div class="reason-card">
         <div class="point-badge">point 2</div>
         <div class="icon">💎</div>
-        <h3>なのに！"圧倒的コスパ"</h3>
+        <h3>なのに！<br>"圧倒的コスパ"</h3>
         <p>高品質でも続けやすい価格設定。SNS投稿を無理なく習慣化できます。</p>
       </div>
       <div class="reason-card">
         <div class="point-badge">point 3</div>
         <div class="icon">📱</div>
-        <h3>とにかく！"丸投げで楽"</h3>
+        <h3>とにかく！<br>"丸投げで楽"</h3>
         <p>撮った素材を送るだけ。忙しい経営者でも負担ゼロでSNS発信を継続できます。</p>
       </div>
       <div class="reason-card">
         <div class="point-badge">point 4</div>
         <div class="icon">▶️</div>
-        <h3>そのまま！"活用できる"</h3>
+        <h3>そのまま！<br>"活用できる"</h3>
         <p>今ある動画もそのまま活用可能。負担ゼロでショート動画化が可能です。</p>
       </div>
     </div>
@@ -1463,89 +1463,127 @@
   (function () {
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
-    let W, H, particles, bars;
+    let W, H, phones, beams, glows, t = 0;
 
     function resize() {
-      const hero = canvas.parentElement;
-      W = canvas.width = hero.offsetWidth;
-      H = canvas.height = hero.offsetHeight;
+      W = canvas.width = canvas.parentElement.offsetWidth;
+      H = canvas.height = canvas.parentElement.offsetHeight;
     }
 
-    function Particle() {
+    /* ── 浮遊するスマホ枠 ── */
+    function Phone() { this.reset(true); }
+    Phone.prototype.reset = function (init) {
+      this.w = Math.random() * 38 + 28;          // 28〜66px
+      this.h = this.w * (16 / 9);
+      this.x = init ? Math.random() * W : -this.w - 20;
+      this.y = Math.random() * H;
+      this.vx = Math.random() * 0.5 + 0.2;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.rot = (Math.random() - 0.5) * 0.3;
+      this.vrot = (Math.random() - 0.5) * 0.003;
+      this.alpha = Math.random() * 0.18 + 0.06;
+      this.gold = Math.random() > 0.55;
+      this.r = 4;
+    };
+    Phone.prototype.update = function () {
+      this.x += this.vx; this.y += this.vy; this.rot += this.vrot;
+      if (this.x > W + this.w + 20) this.reset(false);
+      if (this.y < -this.h) this.y = H + this.h;
+      if (this.y > H + this.h) this.y = -this.h;
+    };
+    Phone.prototype.draw = function () {
+      ctx.save();
+      ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+      ctx.rotate(this.rot);
+      ctx.globalAlpha = this.alpha;
+      const color = this.gold ? 'rgba(212,165,32,1)' : 'rgba(80,140,255,1)';
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      // 角丸矩形
+      const x = -this.w / 2, y = -this.h / 2, r = this.r;
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + this.w - r, y);
+      ctx.quadraticCurveTo(x + this.w, y, x + this.w, y + r);
+      ctx.lineTo(x + this.w, y + this.h - r);
+      ctx.quadraticCurveTo(x + this.w, y + this.h, x + this.w - r, y + this.h);
+      ctx.lineTo(x + r, y + this.h);
+      ctx.quadraticCurveTo(x, y + this.h, x, y + this.h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+      ctx.stroke();
+      // ▶ ボタン
+      ctx.globalAlpha = this.alpha * 0.7;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      const ps = this.w * 0.18;
+      ctx.moveTo(-ps * 0.6, -ps);
+      ctx.lineTo(-ps * 0.6, ps);
+      ctx.lineTo(ps * 0.9, 0);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    };
+
+    /* ── 横切る光のビーム ── */
+    function Beam() { this.reset(true); }
+    Beam.prototype.reset = function (init) {
+      this.y = Math.random() * H;
+      this.x = init ? Math.random() * W : -600;
+      this.len = Math.random() * 300 + 120;
+      this.h = Math.random() * 2.5 + 0.5;
+      this.speed = Math.random() * 2.5 + 1.0;
+      this.alpha = Math.random() * 0.35 + 0.12;
+      this.gold = Math.random() > 0.45;
+    };
+    Beam.prototype.update = function () {
+      this.x += this.speed;
+      if (this.x > W + 600) this.reset(false);
+    };
+    Beam.prototype.draw = function () {
+      const color = this.gold ? [212, 165, 32] : [80, 140, 255];
+      const grad = ctx.createLinearGradient(this.x, 0, this.x + this.len, 0);
+      grad.addColorStop(0, 'rgba(' + color + ',0)');
+      grad.addColorStop(0.3, 'rgba(' + color + ',' + this.alpha + ')');
+      grad.addColorStop(0.7, 'rgba(' + color + ',' + this.alpha + ')');
+      grad.addColorStop(1, 'rgba(' + color + ',0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(this.x, this.y - this.h / 2, this.len, this.h);
+    };
+
+    /* ── 脈打つグロー ── */
+    function Glow() {
       this.x = Math.random() * W;
       this.y = Math.random() * H;
-      this.vx = (Math.random() - 0.5) * 0.35;
-      this.vy = (Math.random() - 0.5) * 0.35;
-      this.r = Math.random() * 1.8 + 0.4;
-      this.alpha = Math.random() * 0.55 + 0.15;
-      this.gold = Math.random() > 0.6;
-    }
-    Particle.prototype.update = function () {
-      this.x += this.vx; this.y += this.vy;
-      if (this.x < 0) this.x = W; if (this.x > W) this.x = 0;
-      if (this.y < 0) this.y = H; if (this.y > H) this.y = 0;
-    };
-    Particle.prototype.draw = function () {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = this.gold
-        ? 'rgba(212,165,32,' + this.alpha + ')'
-        : 'rgba(80,140,255,' + this.alpha + ')';
-      ctx.fill();
-    };
-
-    function Bar() { this.reset(true); }
-    Bar.prototype.reset = function (init) {
-      this.y = Math.random() * H;
-      this.x = init ? Math.random() * W : -220;
-      this.w = Math.random() * 140 + 50;
-      this.h = Math.random() * 3 + 1;
-      this.speed = Math.random() * 0.45 + 0.12;
-      this.alpha = Math.random() * 0.12 + 0.04;
+      this.r = Math.random() * 80 + 40;
+      this.phase = Math.random() * Math.PI * 2;
+      this.speed = Math.random() * 0.012 + 0.006;
       this.gold = Math.random() > 0.5;
-    };
-    Bar.prototype.update = function () {
-      this.x += this.speed;
-      if (this.x > W + 220) this.reset(false);
-    };
-    Bar.prototype.draw = function () {
-      ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = this.gold ? '#d4a520' : '#4090ff';
-      ctx.fillRect(this.x, this.y, this.w, this.h);
-      ctx.globalAlpha = 1;
-    };
-
-    function connect() {
-      const dist = 110;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < dist) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = 'rgba(212,165,32,' + ((1 - d / dist) * 0.12) + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
     }
+    Glow.prototype.draw = function (t) {
+      const a = (Math.sin(t * this.speed + this.phase) * 0.5 + 0.5) * 0.07 + 0.02;
+      const color = this.gold ? '212,165,32' : '60,120,255';
+      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+      grad.addColorStop(0, 'rgba(' + color + ',' + a + ')');
+      grad.addColorStop(1, 'rgba(' + color + ',0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+    };
 
     function init() {
       resize();
-      const n = Math.max(Math.floor((W * H) / 16000), 45);
-      particles = Array.from({ length: n }, function () { return new Particle(); });
-      bars = Array.from({ length: 14 }, function () { return new Bar(); });
+      phones = Array.from({ length: 10 }, function () { return new Phone(); });
+      beams  = Array.from({ length: 18 }, function () { return new Beam(); });
+      glows  = Array.from({ length: 6  }, function () { return new Glow(); });
     }
 
     function draw() {
+      t++;
       ctx.clearRect(0, 0, W, H);
-      bars.forEach(function (b) { b.update(); b.draw(); });
-      connect();
-      particles.forEach(function (p) { p.update(); p.draw(); });
+      glows.forEach(function (g) { g.draw(t); });
+      beams.forEach(function (b) { b.update(); b.draw(); });
+      phones.forEach(function (p) { p.update(); p.draw(); });
       requestAnimationFrame(draw);
     }
 
