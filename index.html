@@ -190,6 +190,23 @@
 
     .hero-note { margin-top: 16px; font-size: 0.8rem; color: var(--gray); }
 
+    .hero-clients {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .hc-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.75rem;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
     /* ── Section base ── */
     section { padding: 80px 24px; }
 
@@ -614,6 +631,37 @@
 
     .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
 
+    /* ── Mid CTA ── */
+    .mid-cta {
+      background: linear-gradient(90deg, rgba(6,199,85,0.08) 0%, rgba(6,199,85,0.04) 100%);
+      border-top: 1px solid rgba(6,199,85,0.25);
+      border-bottom: 1px solid rgba(6,199,85,0.25);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .mid-cta-text { font-size: 0.95rem; color: var(--gray); }
+    .mid-cta-text strong { color: #06c755; }
+    .mid-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #06c755;
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 900;
+      font-size: 0.9rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .mid-cta-btn:hover { opacity: 0.85; }
+
     /* ── Comparison ── */
     .comparison { background: var(--navy-mid); }
     .comp-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
@@ -836,14 +884,14 @@
 <!-- Hero -->
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
-  <div class="hero-badge">スマホで撮って送るだけ！</div>
+  <div class="hero-badge">📺 テレビ東京・医療機関にも選ばれた品質</div>
   <h1>
     ショート動画で<br>
     <span class="accent">SNSを</span><br>
     勝手に伸ばします
   </h1>
-  <p class="hero-sub">SNSに何を上げればいいかわからない社長へ</p>
-  <p class="hero-tagline">あなたの素材を<em>"ショート動画にして勝手に伸ばします"</em></p>
+  <p class="hero-sub">動画編集が面倒な経営者・個人事業主・サロンオーナーへ</p>
+  <p class="hero-tagline">スマホで撮って送るだけ。<em>あとは全部お任せ。</em></p>
 
   <div class="hero-price-box">
     <div class="label">基本価格（税別）</div>
@@ -854,12 +902,18 @@
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
     まず1本、無料でお試しください
   </a>
-  <p class="hero-note">LINE登録だけで1本無料制作 ／ リスクゼロでお試しいただけます</p>
+  <p class="hero-note">LINE登録だけで1本無料制作 ／ 返信24時間以内 ／ リスクゼロ</p>
+  <div class="hero-clients">
+    <span class="hc-item">📺 テレビ東京</span>
+    <span class="hc-item">🏥 細野クリニック</span>
+    <span class="hc-item">🎓 東京コーチング協会</span>
+    <span class="hc-item">💼 CRAZY CAREER</span>
+  </div>
 </section>
 
 <!-- Clients marquee -->
 <div class="clients">
-  <div class="clients-label">採用・制作実績</div>
+  <div class="clients-label">こんな企業・団体にも選ばれています</div>
   <div class="marquee-wrapper">
     <div class="marquee-track">
       <!-- set 1 -->
@@ -972,7 +1026,7 @@
         <div class="point-badge">point 1</div>
         <div class="icon">🏆</div>
         <h3>だから！"確かな信頼"</h3>
-        <p>医療機関・TV局にも選ばれた実績。専門テーマも正確に対応できる品質で制作します。</p>
+        <p>テレビ東京・医療機関・コーチング協会など、クオリティにシビアな業界に採用された実績。専門テーマも正確に対応します。</p>
       </div>
       <div class="reason-card">
         <div class="point-badge">point 2</div>
@@ -1108,6 +1162,15 @@
   </div>
 </section>
 
+<!-- Mid CTA -->
+<div class="mid-cta">
+  <p class="mid-cta-text">まずは<strong>1本無料</strong>でクオリティを確かめてください</p>
+  <a href="#cta" class="mid-cta-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    LINE登録で1本無料
+  </a>
+</div>
+
 <!-- Works (placeholder) -->
 <section class="works">
   <div class="section-inner fade-in">
@@ -1149,7 +1212,7 @@
 <!-- About -->
 <section class="about">
   <div class="section-inner fade-in">
-    <h2 class="section-title" style="margin-bottom:40px;"><span class="underline">制作者について</span></h2>
+    <h2 class="section-title" style="margin-bottom:40px;"><span class="underline">なぜ大手にも選ばれるのか</span></h2>
 
     <div class="about-inner">
       <div class="about-photo">
@@ -1160,15 +1223,15 @@
         <h3>MITELCOCCI（みてるこっち）</h3>
         <p class="tagline">みてるこっちが楽しくなる♪ ショート動画制作</p>
         <p>
-          <!-- ここに自己紹介文を入れてください -->
-          医療機関やTV局など専門性の高いコンテンツから、中小企業のSNS発信まで幅広く対応。
-          「撮って送るだけ」のシンプルな仕組みで、忙しい経営者でも無理なくSNSを継続できるサービスを提供しています。
+          独立直後から、テレビ東京・東京コーチング協会・細野クリニック・CRAZY CAREERなど、クオリティにシビアな企業・団体に採用いただきました。<br><br>
+          大手代理店のように「担当者が変わる」「連絡が遅い」ということがなく、すべて私が直接対応。専門用語も正確に扱い、意図をくみ取った編集で「一発OKが多い」とご好評をいただいています。
         </p>
         <div class="trust-badges">
-          <span class="badge">医療機関実績あり</span>
-          <span class="badge">TV局実績あり</span>
-          <span class="badge">月5本〜対応</span>
-          <span class="badge">個人対応で丁寧</span>
+          <span class="badge">📺 テレビ東京 実績</span>
+          <span class="badge">🏥 医療機関 実績</span>
+          <span class="badge">🎓 コーチング協会 実績</span>
+          <span class="badge">💼 キャリア企業 実績</span>
+          <span class="badge">担当者ずっと同じ</span>
         </div>
       </div>
     </div>
@@ -1202,7 +1265,7 @@
             <td>品質</td>
             <td class="bad">ムラがある</td>
             <td>高品質</td>
-            <td class="highlight"><span class="comp-ok">●</span> TV局クオリティ</td>
+            <td class="highlight"><span class="comp-ok">●</span> TV局・医療機関採用実績</td>
           </tr>
           <tr>
             <td>納期</td>
