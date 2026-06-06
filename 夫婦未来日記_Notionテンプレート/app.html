@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>未来日記 | 80歳までのライフデザイン</title>
+<style>
+:root {
+  --a:#c8956c; --ad:#9e6844; --al:#f0e0d0;
+  --bg:#faf8f4; --w:#fff; --t:#2d2520; --m:#8a7a70; --b:#e8ddd5;
+  --dk:#1a1008; --red:#ef4444; --grn:#22c55e; --blu:#3b82f6; --pur:#7c3aed;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#000;overflow:hidden}
+#app{width:100%;max-width:430px;height:100%;max-height:100dvh;margin:0 auto;position:relative;overflow:hidden;background:var(--bg)}
+
+/* ── Screens ── */
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:translateX(28px);transition:opacity .28s ease,transform .28s ease}
+.scr.on{opacity:1;pointer-events:all;transform:translateX(0)}
+.scr.out{opacity:0;transform:translateX(-28px)}
+
+/* ── Buttons ── */
+.btn{width:100%;border:none;border-radius:14px;padding:17px;font-size:15px;font-weight:700;letter-spacing:.8px;cursor:pointer;transition:transform .1s,opacity .1s}
+.btn:active{transform:scale(.97);opacity:.9}
+.btn-p{background:var(--a);color:#fff;box-shadow:0 6px 20px rgba(200,149,108,.32)}
+.btn-g{background:var(--b);color:var(--m)}
+.btn-g.on{background:var(--a);color:#fff;box-shadow:0 6px 20px rgba(200,149,108,.28)}
+.btn-s{background:transparent;color:rgba(255,255,255,.45);border:none;padding:14px;width:100%;font-size:13px;cursor:pointer;letter-spacing:.5px}
+.btn-o{background:transparent;color:var(--a);border:1.5px solid var(--a);border-radius:14px;padding:15px;width:100%;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.5px}
+
+/* ════════ SPLASH ════════ */
+#sp{background:linear-gradient(160deg,#1a1008 0%,#3d2410 50%,#6b3d1e 100%);align-items:center;justify-content:center;padding:48px 28px}
+.sp-icon{width:76px;height:76px;background:rgba(200,149,108,.13);border:1.5px solid rgba(200,149,108,.32);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:34px;margin-bottom:28px}
+.sp-eye{font-size:10px;letter-spacing:5px;color:rgba(255,255,255,.35);margin-bottom:10px}
+.sp-title{font-size:30px;font-weight:300;color:#fff;text-align:center;line-height:1.5;letter-spacing:2px;margin-bottom:10px}
+.sp-sub{font-size:13px;color:rgba(255,255,255,.45);text-align:center;line-height:1.9;margin-bottom:40px}
+.sp-q{font-size:12px;color:rgba(255,255,255,.32);text-align:center;line-height:2.1;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;margin-bottom:36px;max-width:260px}
+.sp-partner{background:rgba(200,149,108,.15);border:1px solid rgba(200,149,108,.3);border-radius:12px;padding:14px 16px;margin-bottom:16px;display:none}
+.sp-partner p{font-size:12px;color:var(--al);line-height:1.7}
+.sp-partner strong{display:block;font-size:14px;color:#fff;margin-bottom:4px}
+
+/* ════════ QUESTION ════════ */
+#qq{background:var(--bg)}
+.q-hd{background:var(--w);padding:50px 18px 14px;border-bottom:1px solid var(--b);flex-shrink:0}
+.q-prog{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.q-dots{display:flex;gap:3px;flex:1}
+.q-dot{height:3px;flex:1;border-radius:2px;background:var(--b);transition:background .3s}
+.q-dot.done{background:var(--a)}
+.q-dot.now{background:var(--a);opacity:.4}
+.q-n{font-size:10px;color:var(--m);letter-spacing:1px;white-space:nowrap}
+.q-txt{font-size:17px;font-weight:700;color:var(--t);line-height:1.5;white-space:pre-line;margin-bottom:4px}
+.q-hint{font-size:11px;color:var(--m)}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px;flex:1;overflow:hidden}
+.ch{border-radius:14px;overflow:hidden;border:2px solid var(--b);background:var(--w);display:flex;flex-direction:column;cursor:pointer;transition:border-color .15s,transform .1s,box-shadow .15s}
+.ch:active{transform:scale(.965)}
+.ch.sel{border-color:var(--a);box-shadow:0 0 0 3px rgba(200,149,108,.16)}
+.ch-img{flex:1;min-height:90px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.ch-img::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.16) 1.5px,transparent 1.5px);background-size:14px 14px;pointer-events:none}
+.ch-img::after{content:'';position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08);bottom:-32px;right:-22px;pointer-events:none}
+.ch-img svg{width:76px;height:52px;position:relative;z-index:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,.14))}
+.ch-ck{position:absolute;top:7px;right:7px;width:22px;height:22px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;opacity:0;transform:scale(.4);transition:opacity .15s,transform .15s}
+.ch.sel .ch-ck{opacity:1;transform:scale(1)}
+.ch-lbl{padding:10px 12px 13px;font-size:13px;font-weight:700;color:var(--t);line-height:1.4;flex-shrink:0;white-space:pre-line}
+.q-ft{padding:0 12px 24px;flex-shrink:0}
+
+/* ════════ LOADING ════════ */
+#ld{background:linear-gradient(160deg,#1a1008,#3d2410,#6b3d1e);align-items:center;justify-content:center;padding:36px 24px;gap:18px}
+.ld-ico{font-size:50px}
+.ld-title{font-size:20px;font-weight:300;color:#fff;text-align:center;line-height:1.6;letter-spacing:1px}
+.ld-sub{font-size:10px;color:rgba(255,255,255,.38);letter-spacing:3px}
+.ld-bars{width:100%;display:flex;flex-direction:column;gap:10px;margin:6px 0}
+.ld-row{display:flex;flex-direction:column;gap:4px}
+.ld-lbl{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.38);letter-spacing:1px}
+.ld-bg{height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.ld-fill{height:100%;background:var(--a);border-radius:2px;width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+.ld-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.ld-tag{background:rgba(200,149,108,.14);border:1px solid rgba(200,149,108,.28);color:rgba(240,224,208,.75);font-size:10px;padding:3px 10px;border-radius:20px;opacity:0;transform:translateY(5px);transition:opacity .35s,transform .35s}
+.ld-tag.vis{opacity:1;transform:translateY(0)}
+
+/* ════════ RESULT ════════ */
+#rs{background:var(--bg);overflow-y:auto}
+#rs::-webkit-scrollbar{display:none}
+.rs-hero{background:linear-gradient(160deg,#1a1008,#3d2410,#6b3d1e);padding:52px 18px 24px;flex-shrink:0}
+.rs-eye{font-size:9px;letter-spacing:5px;color:rgba(255,255,255,.35);margin-bottom:6px}
+.rs-type{font-size:12px;color:var(--a);letter-spacing:2px;margin-bottom:5px;font-weight:700}
+.rs-title{font-size:22px;font-weight:300;color:#fff;line-height:1.55;letter-spacing:1px;margin-bottom:6px;white-space:pre-line}
+.rs-tension{font-size:11px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:14px;padding:10px 12px;background:rgba(255,255,255,.06);border-radius:8px;border-left:2px solid rgba(200,149,108,.5)}
+.rs-tags{display:flex;flex-wrap:wrap;gap:5px}
+.rs-tag{font-size:10px;padding:3px 11px;border-radius:20px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);letter-spacing:.5px}
+.rs-body{padding:18px 14px 130px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--w);border-radius:16px;border:1px solid var(--b);overflow:hidden}
+.card-hd{padding:12px 15px;font-size:9px;letter-spacing:3px;font-weight:700;color:var(--a);border-bottom:1px solid var(--b);background:rgba(200,149,108,.04);display:flex;align-items:center;gap:6px}
+.card-bd{padding:15px}
+.life-txt{font-size:13.5px;color:var(--t);line-height:2.1;white-space:pre-line}
+.s-row{display:flex;gap:8px;align-items:center;margin-bottom:9px}
+.s-lbl{font-size:11px;color:var(--m);width:84px;flex-shrink:0}
+.s-bg{flex:1;height:6px;background:var(--b);border-radius:3px;overflow:hidden}
+.s-fill{height:100%;background:var(--a);border-radius:3px;width:0;transition:width .9s ease}
+.s-num{font-size:11px;color:var(--a);font-weight:700;width:30px;text-align:right}
+.task{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid var(--b)}
+.task:last-child{border-bottom:none;padding-bottom:0}
+.task-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.task-info{flex:1}
+.task-t{font-size:13px;font-weight:600;color:var(--t);line-height:1.4;margin-bottom:2px}
+.task-w{font-size:11px;color:var(--m)}
+.task-ck{width:22px;height:22px;border:2px solid var(--b);border-radius:6px;flex-shrink:0;margin-top:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:all .15s}
+.task-ck.ck{background:var(--a);border-color:var(--a);color:#fff}
+.lock-card{border:1.5px dashed var(--a);background:rgba(200,149,108,.04)}
+.rs-ft{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:10px 14px 24px;background:linear-gradient(to top,var(--bg) 75%,transparent);display:flex;flex-direction:column;gap:8px}
+
+/* ════════ SHARE ════════ */
+#sh{background:var(--bg)}
+.sh-hd{background:linear-gradient(135deg,#2d2520,#5c3d2e);padding:52px 18px 24px;flex-shrink:0}
+.sh-title{font-size:22px;font-weight:300;color:#fff;line-height:1.5;letter-spacing:1px;margin-bottom:8px}
+.sh-sub{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+.sh-body{flex:1;padding:20px 14px;display:flex;flex-direction:column;gap:16px}
+.sh-step{display:flex;gap:14px;align-items:flex-start;background:var(--w);border-radius:14px;border:1px solid var(--b);padding:16px}
+.sh-num{width:28px;height:28px;background:var(--a);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.sh-step-body h4{font-size:13px;font-weight:700;color:var(--t);margin-bottom:3px}
+.sh-step-body p{font-size:12px;color:var(--m);line-height:1.6}
+.url-box{background:var(--bg);border:1px solid var(--b);border-radius:10px;padding:12px 14px;font-size:11px;color:var(--m);word-break:break-all;line-height:1.6;font-family:monospace}
+.sh-ft{padding:0 14px 28px;flex-shrink:0;display:flex;flex-direction:column;gap:8px}
+
+/* ════════ COMPARE ════════ */
+#cp{background:var(--bg);overflow-y:auto}
+#cp::-webkit-scrollbar{display:none}
+.cp-hd{background:linear-gradient(135deg,#1a1008,#5c3d2e);padding:52px 18px 24px;flex-shrink:0}
+.cp-title{font-size:20px;font-weight:300;color:#fff;line-height:1.5;letter-spacing:1px;margin-bottom:10px}
+.cp-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.cp-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px}
+.cp-card-name{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.45);margin-bottom:4px}
+.cp-card-type{font-size:12px;color:var(--a);font-weight:700;margin-bottom:2px}
+.cp-card-title{font-size:11px;color:rgba(255,255,255,.75);line-height:1.4}
+.cp-body{padding:16px 14px 100px;display:flex;flex-direction:column;gap:14px}
+.cp-section-label{font-size:9px;letter-spacing:3px;color:var(--m);padding:0 2px;display:flex;align-items:center;gap:8px}
+.cp-section-label::after{content:'';flex:1;height:1px;background:var(--b)}
+.match-item{display:flex;gap:10px;align-items:flex-start;background:var(--w);border-radius:12px;border:1px solid var(--b);padding:12px}
+.match-ico{font-size:18px;flex-shrink:0}
+.match-body h4{font-size:12px;font-weight:700;color:var(--t);margin-bottom:2px}
+.match-body p{font-size:11px;color:var(--m);line-height:1.5}
+.diff-item{background:rgba(200,149,108,.06);border:1px solid rgba(200,149,108,.2);border-radius:12px;padding:12px}
+.diff-q{font-size:10px;letter-spacing:1px;color:var(--a);margin-bottom:8px;font-weight:700}
+.diff-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.diff-col{background:var(--w);border-radius:8px;padding:8px 10px}
+.diff-col-name{font-size:9px;color:var(--a);letter-spacing:1px;margin-bottom:4px}
+.diff-col-val{font-size:11px;color:var(--t);line-height:1.4}
+.cp-ft{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:10px 14px 24px;background:linear-gradient(to top,var(--bg) 75%,transparent)}
+
+/* ════════ LIFEMAP ════════ */
+#lm{background:var(--bg);overflow-y:auto}
+#lm::-webkit-scrollbar{display:none}
+.lm-hd{background:linear-gradient(160deg,#1a1008,#3d2410,#6b3d1e);padding:52px 18px 24px;flex-shrink:0}
+.lm-title{font-size:22px;font-weight:300;color:#fff;line-height:1.5;letter-spacing:1px;margin-bottom:6px}
+.lm-sub{font-size:12px;color:rgba(255,255,255,.45);line-height:1.8}
+.lm-body{padding:16px 14px 100px;display:flex;flex-direction:column;gap:10px}
+.stage-card{border-radius:14px;overflow:hidden;border:1px solid var(--b);background:var(--w)}
+.stage-card.locked{opacity:.7}
+.stage-header{padding:16px;display:flex;align-items:center;gap:14px;position:relative}
+.stage-color-bar{width:4px;border-radius:2px;align-self:stretch;flex-shrink:0}
+.stage-info{flex:1}
+.stage-decade{font-size:9px;letter-spacing:3px;font-weight:700;margin-bottom:3px}
+.stage-name{font-size:15px;font-weight:700;color:var(--t);margin-bottom:2px}
+.stage-theme{font-size:11px;color:var(--m)}
+.stage-lock{font-size:16px;position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+.stage-body{padding:0 16px 14px;border-top:1px solid var(--b)}
+.stage-focus{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px}
+.focus-tag{font-size:10px;padding:4px 10px;border-radius:20px;font-weight:600}
+.stage-cta{font-size:11px;color:var(--a);padding:10px 16px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.lm-ft{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:10px 14px 24px;background:linear-gradient(to top,var(--bg) 75%,transparent)}
+
+/* ── nav back ── */
+.nav-back{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.55);margin-bottom:12px;cursor:pointer;padding:0}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ════ SPLASH ════ -->
+<div id="sp" class="scr on">
+  <div class="sp-icon">📖</div>
+  <p class="sp-eye">LIFE DESIGN</p>
+  <h1 class="sp-title">80歳までの<br>未来日記</h1>
+  <p class="sp-sub">7つの問いに答えるだけで、<br>あなたの理想の人生が言葉になる。<br>夫婦で共有して、60年を設計しよう。</p>
+  <div id="sp-partner" class="sp-partner">
+    <strong>💌 パートナーから届いています</strong>
+    <p>クイズを完了すると、ふたりの結果を比べられます。</p>
+  </div>
+  <p class="sp-q">「未来を先に描いた人は、<br>家族の幸せを手繰り寄せられる。」</p>
+  <button class="btn btn-p" id="btn-start" onclick="startQuiz()">はじめる</button>
+  <button class="btn btn-s" id="btn-resume" style="display:none" onclick="resumeResult()">前回の結果を見る</button>
+</div>
+
+<!-- ════ QUESTION ════ -->
+<div id="qq" class="scr">
+  <div class="q-hd">
+    <div class="q-prog">
+      <div class="q-dots" id="q-dots"></div>
+      <span class="q-n" id="q-n"></span>
+    </div>
+    <div class="q-txt" id="q-txt"></div>
+    <div class="q-hint">正直に、直感で選んで</div>
+  </div>
+  <div class="q-grid" id="q-grid"></div>
+  <div class="q-ft">
+    <button class="btn btn-g" id="btn-next" onclick="nextQ()">次へ</button>
+  </div>
+</div>
+
+<!-- ════ LOADING ════ -->
+<div id="ld" class="scr">
+  <div class="ld-ico">✨</div>
+  <p class="ld-title">あなたの本音を<br>言語化しています</p>
+  <p class="ld-sub">7問の答えを分析中</p>
+  <div class="ld-bars" id="ld-bars"></div>
+  <div class="ld-tags" id="ld-tags"></div>
+</div>
+
+<!-- ════ RESULT ════ -->
+<div id="rs" class="scr">
+  <div class="rs-hero">
+    <p class="rs-eye">YOUR IDEAL LIFE</p>
+    <p class="rs-type" id="rs-type"></p>
+    <h2 class="rs-title" id="rs-title"></h2>
+    <div class="rs-tension" id="rs-tension"></div>
+    <div class="rs-tags" id="rs-tags"></div>
+  </div>
+  <div class="rs-body">
+    <div class="card">
+      <div class="card-hd">📊 価値観マップ</div>
+      <div class="card-bd" id="rs-chart"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">✍️ あなたの未来日記（80歳からの逆算）</div>
+      <div class="card-bd"><p class="life-txt" id="rs-life"></p></div>
+    </div>
+    <div class="card">
+      <div class="card-hd">⚡ 今日からのタスク</div>
+      <div class="card-bd" id="rs-tasks"></div>
+    </div>
+    <div class="card lock-card">
+      <div class="card-bd" style="text-align:center;padding:20px 16px">
+        <div style="font-size:26px;margin-bottom:10px">🔒</div>
+        <div style="font-size:13px;font-weight:700;color:var(--t);margin-bottom:6px">夫婦60年・全ステージへ</div>
+        <div style="font-size:12px;color:var(--m);line-height:1.7;margin-bottom:12px">30〜80代の各ステージを夫婦でシェア<br>詳細タスクとロードマップが解放</div>
+        <div style="font-size:11px;color:var(--a);letter-spacing:1px;font-weight:700">月額 ¥480〜</div>
+      </div>
+    </div>
+  </div>
+  <div class="rs-ft">
+    <button class="btn btn-p" onclick="goLifeMap()">80歳までのライフマップを見る →</button>
+    <button class="btn btn-o" onclick="goShare()">💑 パートナーに送る</button>
+  </div>
+</div>
+
+<!-- ════ SHARE ════ -->
+<div id="sh" class="scr">
+  <div class="sh-hd">
+    <button class="nav-back" onclick="goBack('rs')">← 戻る</button>
+    <h2 class="sh-title">パートナーと<br>結果を比べよう</h2>
+    <p class="sh-sub">リンクを送るだけ。パートナーがクイズを完了すると、ふたりの答えが並んで表示されます。</p>
+  </div>
+  <div class="sh-body">
+    <div class="sh-step">
+      <div class="sh-num">1</div>
+      <div class="sh-step-body">
+        <h4>リンクをコピーする</h4>
+        <p>下のURLをコピーして、LINEやメッセージで送ってください。</p>
+      </div>
+    </div>
+    <div class="url-box" id="sh-url">生成中...</div>
+    <div class="sh-step">
+      <div class="sh-num">2</div>
+      <div class="sh-step-body">
+        <h4>パートナーが同じクイズをする</h4>
+        <p>リンクを開いた相手が7問答えると、ふたりの比較画面が自動で表示されます。</p>
+      </div>
+    </div>
+    <div class="sh-step">
+      <div class="sh-num">3</div>
+      <div class="sh-step-body">
+        <h4>一致点・違いを確認する</h4>
+        <p>価値観の一致点と、知らなかった相手の本音が浮かび上がります。</p>
+      </div>
+    </div>
+  </div>
+  <div class="sh-ft">
+    <button class="btn btn-p" onclick="copyUrl()">URLをコピーする</button>
+    <button class="btn btn-s" style="color:var(--m)" onclick="goBack('rs')">戻る</button>
+  </div>
+</div>
+
+<!-- ════ COMPARE ════ -->
+<div id="cp" class="scr">
+  <div class="cp-hd">
+    <button class="nav-back" onclick="goBack('rs')">← 戻る</button>
+    <h2 class="cp-title">ふたりの未来日記<br>比較結果</h2>
+    <div class="cp-cards" id="cp-cards"></div>
+  </div>
+  <div class="cp-body" id="cp-body"></div>
+  <div class="cp-ft">
+    <button class="btn btn-p" onclick="goLifeMap()">ふたりのライフマップを見る →</button>
+  </div>
+</div>
+
+<!-- ════ LIFEMAP ════ -->
+<div id="lm" class="scr">
+  <div class="lm-hd">
+    <button class="nav-back" onclick="goBack('rs')">← 戻る</button>
+    <h2 class="lm-title">80歳までの<br>ライフマップ</h2>
+    <p class="lm-sub">あなたのプロフィールをもとに、各ライフステージで大切にすることを整理しました。</p>
+  </div>
+  <div class="lm-body" id="lm-body"></div>
+  <div class="lm-ft">
+    <button class="btn btn-p" onclick="alert('全ステージ詳細版への遷移（課金後）')">全ステージの詳細を見る（月額¥480〜）</button>
+  </div>
+</div>
+
+</div><!-- #app -->
+
+<script>
+// ══════════════════════════════════
+//  SVG ILLUSTRATIONS (per dimension)
+// ══════════════════════════════════
+const SVGS = {
+  couple:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="26" r="13" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><circle cx="56" cy="26" r="13" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><path d="M36 18 Q40 13 44 18" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-linecap="round"/><path d="M31 33 L26 42" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/><path d="M49 33 L54 42" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/></svg>`,
+  family:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="13" r="9" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><circle cx="20" cy="41" r="9" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><circle cx="60" cy="41" r="9" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><line x1="33" y1="20" x2="26" y2="33" stroke="rgba(255,255,255,.45)" stroke-width="1.8"/><line x1="47" y1="20" x2="54" y2="33" stroke="rgba(255,255,255,.45)" stroke-width="1.8"/><line x1="29" y1="41" x2="51" y2="41" stroke="rgba(255,255,255,.45)" stroke-width="1.8"/></svg>`,
+  freedom:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 44 Q20 18 40 11 Q60 18 72 44" stroke="rgba(255,255,255,.9)" stroke-width="2.5" stroke-linecap="round"/><path d="M18 44 Q28 24 40 19 Q52 24 62 44" stroke="rgba(255,255,255,.3)" stroke-width="1.8" stroke-linecap="round"/><circle cx="40" cy="11" r="5" fill="rgba(255,255,255,.8)"/></svg>`,
+  career:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="48" x2="70" y2="48" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/><rect x="12" y="34" width="11" height="14" rx="2" fill="rgba(255,255,255,.4)"/><rect x="29" y="24" width="11" height="24" rx="2" fill="rgba(255,255,255,.62)"/><rect x="46" y="13" width="11" height="35" rx="2" fill="rgba(255,255,255,.85)"/><path d="M63 14 L69 8 M69 8 L63 8 M69 8 L69 14" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  future:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 46 L36 30 L52 36 L70 12" stroke="rgba(255,255,255,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="70" cy="12" r="4.5" fill="rgba(255,255,255,.85)"/><circle cx="36" cy="30" r="3" fill="rgba(255,255,255,.55)"/><circle cx="52" cy="36" r="3" fill="rgba(255,255,255,.55)"/><line x1="10" y1="46" x2="70" y2="46" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/></svg>`,
+  self:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="28" r="10" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><line x1="40" y1="7" x2="40" y2="13" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="58" y1="11" x2="54" y2="16" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="64" y1="28" x2="58" y2="28" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="58" y1="45" x2="54" y2="40" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="40" y1="49" x2="40" y2="43" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="22" y1="45" x2="26" y2="40" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="16" y1="28" x2="22" y2="28" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/><line x1="22" y1="11" x2="26" y2="16" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round"/></svg>`,
+  present:`<svg viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="28" r="18" stroke="rgba(255,255,255,.9)" stroke-width="2.5"/><circle cx="40" cy="28" r="7" fill="rgba(255,255,255,.8)"/><circle cx="40" cy="28" r="25" stroke="rgba(255,255,255,.22)" stroke-width="1.5" stroke-dasharray="5 4"/></svg>`,
+};
+function getPrimaryKey(sc){return Object.entries(sc).sort((a,b)=>b[1]-a[1])[0][0];}
+
+// ══════════════════════════════════
+//  DATA: 7 QUESTIONS
+//  「好みの調査」ではなく「今の本音と恐れを掘り起こす」
+// ══════════════════════════════════
+const QS = [
+  {
+    q: "今の夫婦の時間について、\n一番近いのは？",
+    choices: [
+      {e:"💬",bg:["#fde68a","#f59e0b"],l:"会話はあるけど\n深い話ができていない",  sc:{couple:2,present:1}},
+      {e:"⏳",bg:["#93c5fd","#3b82f6"],l:"一緒にいる時間が\nそもそも足りていない",  sc:{couple:3,family:1}},
+      {e:"🌫️",bg:["#b8c4d8","#4a5978"],l:"将来の話を\nほとんどしていない",          sc:{future:2,couple:2}},
+      {e:"☀️",bg:["#86efac","#22c55e"],l:"今の関係に\n特に不満はない",              sc:{family:2,present:2}},
+    ]
+  },
+  {
+    q: "今、自分の人生で\n一番後回しにしていることは？",
+    choices: [
+      {e:"🌱",bg:["#fca5a5","#ef4444"],l:"自分のやりたいこと\nや夢",               sc:{freedom:3,self:2}},
+      {e:"💑",bg:["#c4b5fd","#7c3aed"],l:"夫婦の時間や\n関係性",                   sc:{couple:3}},
+      {e:"👶",bg:["#86efac","#22c55e"],l:"子どもとの\n丁寧な関わり",               sc:{family:3}},
+      {e:"💰",bg:["#fde68a","#f59e0b"],l:"お金・将来の\n具体的な準備",             sc:{career:3,future:2}},
+    ]
+  },
+  {
+    q: "50代以降の自分を\n想像したとき、一番ドキッとするのは？",
+    choices: [
+      {e:"❄️",bg:["#93c5fd","#3b82f6"],l:"夫婦関係が\n形だけになっていること",     sc:{couple:3,future:2}},
+      {e:"😶",bg:["#b8c4d8","#4a5978"],l:"やりたいことを\n何もやれていないこと",   sc:{freedom:3,future:2}},
+      {e:"📵",bg:["#fca5a5","#ef4444"],l:"子どもとの関係が\n希薄になっていること",  sc:{family:3,future:1}},
+      {e:"😰",bg:["#fde68a","#f59e0b"],l:"お金の不安が\nそのまま残っていること",   sc:{career:3,future:2}},
+    ]
+  },
+  {
+    q: "パートナーに伝えたいけど、\n言えていないことに近いのは？",
+    choices: [
+      {e:"🙏",bg:["#86efac","#22c55e"],l:"ありがとう\nいつも支えてくれて",          sc:{couple:2,family:1}},
+      {e:"📅",bg:["#c4b5fd","#7c3aed"],l:"将来のことを\nもっと一緒に話したい",      sc:{couple:2,future:3}},
+      {e:"🕐",bg:["#fca5a5","#ef4444"],l:"ふたりだけの\n時間がほしい",              sc:{couple:3,freedom:1}},
+      {e:"🌟",bg:["#fde68a","#f59e0b"],l:"あなたの夢を\n全力で応援したい",          sc:{couple:1,freedom:2,family:1}},
+    ]
+  },
+  {
+    q: "10年後の夫婦として、\n一番叶えたいのは？",
+    choices: [
+      {e:"😂",bg:["#fde68a","#f59e0b"],l:"ふたりで笑える\n日常を増やしたい",        sc:{couple:3,family:2}},
+      {e:"🎯",bg:["#86efac","#22c55e"],l:"お互いの夢を持ちながら\n支え合いたい",    sc:{freedom:2,couple:2}},
+      {e:"👨‍👩‍👧‍👦",bg:["#93c5fd","#3b82f6"],l:"子どもに誇れる\n家族でいたい",          sc:{family:3,couple:1}},
+      {e:"🏡",bg:["#c4b5fd","#7c3aed"],l:"経済的な余裕の中で\n穏やかに過ごしたい",  sc:{career:2,family:1,freedom:1}},
+    ]
+  },
+  {
+    q: "今の自分が\n一番恐れていることは？",
+    choices: [
+      {e:"⏸️",bg:["#b8c4d8","#4a5978"],l:"このまま変われずに\n時間が過ぎること",   sc:{freedom:2,future:2}},
+      {e:"💔",bg:["#fca5a5","#ef4444"],l:"大切な人との\n関係が壊れること",          sc:{couple:3,family:2}},
+      {e:"🚫",bg:["#c4b5fd","#7c3aed"],l:"自分の人生を\n諦めてしまうこと",          sc:{freedom:3,self:2}},
+      {e:"🌧️",bg:["#93c5fd","#3b82f6"],l:"老後が不安な\nままでいること",            sc:{career:2,future:3}},
+    ]
+  },
+  {
+    q: "80歳の自分からの一言、\n一番刺さるのは？",
+    choices: [
+      {e:"🌅",bg:["#fde68a","#f59e0b"],l:"「もっと家族と\n笑っておけ」",            sc:{family:3,couple:2}},
+      {e:"🔥",bg:["#fca5a5","#ef4444"],l:"「やりたいことに\nもっと正直でいろ」",    sc:{freedom:3,self:1}},
+      {e:"💌",bg:["#86efac","#22c55e"],l:"「パートナーへの感謝を\n伝え続けろ」",    sc:{couple:3,family:1}},
+      {e:"💪",bg:["#c4b5fd","#7c3aed"],l:"「今の不安は\n必ず乗り越えられる」",      sc:{future:2,career:2}},
+    ]
+  },
+];
+
+// ══════════════════════════════════
+//  DATA: 8 PROFILES（主軸×副軸）
+// ══════════════════════════════════
+const PROFILES = {
+  "couple|family": {
+    type:"夫婦と家族、両方が土台型",
+    title:"夫婦の絆が強いほど、\n家族全体が輝く",
+    tension_key:"family",
+    tags:["夫婦中心","家族の基盤づくり","対話重視"],
+    life:`30代の終わりごろ、気がついたら夫婦で話す時間が増えていた。子どもの話だけじゃなく、「自分たちはどうしたいか」を話せるようになっていた。
+
+40代、仕事が忙しくてもパートナーとの30分が一日のリセットになっていた。
+
+80歳のとき、「この人と一緒で本当によかった」と、ふたりで言えている。`,
+    tasks:[
+      {ico:"💬",bg:"#fef3c7",t:"夫婦で週1回「深い話」の時間を作る",w:"今週から　30分"},
+      {ico:"📝",bg:"#f0fdf4",t:"パートナーへの「言えてないこと」を書き出す",w:"今日"},
+      {ico:"📅",bg:"#eff6ff",t:"ふたりの5年後を一緒に紙に書く",w:"今週末"},
+    ]
+  },
+  "couple|freedom": {
+    type:"夫婦で自由を生きる型",
+    title:"ふたりで選んだ道を、\nふたりで歩み続ける",
+    tension_key:"freedom",
+    tags:["夫婦の対話","自由な生き方","お互いの夢を尊重"],
+    life:`お互いの夢を諦めない夫婦でいたい。それがずっと心にあった。
+
+40代、自分の仕事を変えた。パートナーが背中を押してくれた。あの瞬間が一番「この人でよかった」と思えた瞬間だった。
+
+80歳のとき、「ふたりでいろんなことをやり切った」と笑える人生にする。`,
+    tasks:[
+      {ico:"🌟",bg:"#fef3c7",t:"パートナーに「あなたの夢は何？」と聞いてみる",w:"今日"},
+      {ico:"🗓️",bg:"#f0fdf4",t:"ふたりそれぞれの「やりたいことリスト」を作る",w:"今週末"},
+      {ico:"💬",bg:"#eff6ff",t:"週1回、仕事と人生のことを話す時間を確保する",w:"今週から"},
+    ]
+  },
+  "family|couple": {
+    type:"家族が人生の中心型",
+    title:"子どもの笑顔が、\n夫婦の原動力になる",
+    tension_key:"couple",
+    tags:["家族中心","子育て優先","夫婦の再発見"],
+    life:`子どもが生まれてから、人生の優先順位が変わった。それは正しい選択だったと、今でも思う。
+
+50代、子どもが独立したあとに「夫婦ふたりに戻る」感覚があった。その準備を、今から少しずつしておく。
+
+80歳のとき、「家族みんなで笑って過ごせた」と言える人生にする。`,
+    tasks:[
+      {ico:"👨‍👩‍👧",bg:"#fef3c7",t:"今週、子どもと1対1の時間を30分作る",w:"今週中"},
+      {ico:"💑",bg:"#f0fdf4",t:"子育て以外の夫婦の話題を1つ作る",w:"今週"},
+      {ico:"📖",bg:"#eff6ff",t:"「50代の夫婦像」をイメージして書き出す",w:"今月中"},
+    ]
+  },
+  "family|freedom": {
+    type:"自分らしく家族を育む型",
+    title:"個性を大切にしながら、\n家族という居場所をつくる",
+    tension_key:"self",
+    tags:["自分らしさ","家族の居場所","諦めない子育て"],
+    life:`自分のやりたいことも、家族も、どちらも大切にしていい。そう思えるようになったのは、ずいぶん経ってからだった。
+
+40代、自分の仕事や趣味を持ったまま子育てをしたことが、子どもへの最高の教育になっていた。
+
+80歳のとき、「諦めなかった自分」を誇りに思える人生にする。`,
+    tasks:[
+      {ico:"🌱",bg:"#fef3c7",t:"今週「自分のための時間」を1時間確保する",w:"今週中"},
+      {ico:"👶",bg:"#f0fdf4",t:"子どもに「自分の夢」を話してみる",w:"今週"},
+      {ico:"📝",bg:"#eff6ff",t:"「やりたいけど後回しにしていること」を3つ書く",w:"今日"},
+    ]
+  },
+  "freedom|couple": {
+    type:"夫婦で新しい人生を切り拓く型",
+    title:"パートナーと共に、\n理想の自分に近づいていく",
+    tension_key:"couple",
+    tags:["自己実現","夫婦の成長","変化を恐れない"],
+    life:`変わりたいと思っていた。でも一人では踏み出せなかった。パートナーがいたから動けた。
+
+30代後半、キャリアを変えた。不安だったけど、パートナーは「やってみなよ」と言ってくれた。
+
+80歳のとき、「この人と一緒に変わり続けた人生」を誇りに思える。`,
+    tasks:[
+      {ico:"🔥",bg:"#fef3c7",t:"パートナーに「変えたいこと」を正直に話す",w:"今週"},
+      {ico:"📋",bg:"#f0fdf4",t:"「3年後の自分」を具体的に書き出す",w:"今週末"},
+      {ico:"💡",bg:"#eff6ff",t:"今週、一つだけ新しいことを試してみる",w:"今週中"},
+    ]
+  },
+  "freedom|family": {
+    type:"自分の夢と家族を両立する型",
+    title:"好きなことで生きながら、\n家族の笑顔を守る",
+    tension_key:"family",
+    tags:["夢の追求","家族への責任","両立のリアル"],
+    life:`好きなことをやりながら、家族も幸せにしたい。それが甘えだと思っていた時期がある。
+
+でも40代になってわかった。好きなことで輝いている自分が、家族への一番の贈り物になる。
+
+80歳のとき、「好きなことを諦めなかった」と子どもに胸を張って言える。`,
+    tasks:[
+      {ico:"🎯",bg:"#fef3c7",t:"「好きなことで稼ぐ」方法を1つ書き出す",w:"今日"},
+      {ico:"👨‍👩‍👧",bg:"#f0fdf4",t:"子どもに「自分が好きなこと」を話す",w:"今週"},
+      {ico:"⏰",bg:"#eff6ff",t:"週3日以内の働き方を目標にスケジュール設計する",w:"今月"},
+    ]
+  },
+  "career|family": {
+    type:"仕事で家族を守る型",
+    title:"仕事への誇りが、\n家族への愛情になる",
+    tension_key:"couple",
+    tags:["仕事の誇り","家族への責任","将来設計"],
+    life:`仕事を頑張るのは、家族のためだった。でも途中から、仕事そのものが好きになっていた。
+
+40代、仕事の結果が出始めたころ、家族が「すごいね」と言ってくれた。あの言葉が今でも原動力。
+
+80歳のとき、「仕事も家族も、どちらも大切にした」と言える人生にする。`,
+    tasks:[
+      {ico:"💼",bg:"#fef3c7",t:"5年後の年収・キャリアのゴールを書く",w:"今週末"},
+      {ico:"👨‍👩‍👧",bg:"#f0fdf4",t:"家族に「仕事への思い」を話してみる",w:"今週"},
+      {ico:"📊",bg:"#eff6ff",t:"家族のためのお金の設計（貯蓄・保険）を見直す",w:"今月中"},
+    ]
+  },
+  "career|couple": {
+    type:"夫婦でキャリアを磨く型",
+    title:"それぞれの道を歩みながら、\nふたりで高め合う",
+    tension_key:"family",
+    tags:["キャリア継続","夫婦の自立","老後設計"],
+    life:`お互いの仕事を尊重し合える夫婦でいたかった。それができるようになるまで、少し時間がかかった。
+
+50代、ふたりとも自分のキャリアに誇りを持ちながら、週末は一緒に過ごせるようになっていた。
+
+80歳のとき、「お互いを尊重し続けた夫婦」として、誰かに話せる人生にする。`,
+    tasks:[
+      {ico:"🤝",bg:"#fef3c7",t:"パートナーの仕事に興味を持って質問してみる",w:"今週"},
+      {ico:"📅",bg:"#f0fdf4",t:"老後の資産・生活設計をふたりで考える時間を作る",w:"今月"},
+      {ico:"🎯",bg:"#eff6ff",t:"自分の専門性を「一言」で言語化する",w:"今日"},
+    ]
+  },
+};
+
+// ══════════════════════════════════
+//  TENSION MESSAGES（最低スコアの次元）
+// ══════════════════════════════════
+const TENSION = {
+  couple: "今のあなたには、夫婦の対話が少し足りていないかもしれません。小さな会話が、大きなすれ違いを防ぎます。",
+  family: "子どもや家族との時間が後回しになっている可能性があります。今の積み重ねが、10年後の関係を作ります。",
+  freedom: "自分のやりたいことが犠牲になっているかもしれません。自分が輝くことが、家族への最大の贈り物です。",
+  career: "将来の経済設計が手つかずのままかもしれません。お金の不安を減らすことが、家族の安心につながります。",
+  future: "長期的な視点で考える時間が足りていないかもしれません。80歳から逆算する習慣が、今を変えます。",
+  self:   "自己表現の機会が減っているかもしれません。自分らしさを保つことが、関係性を豊かにします。",
+  present:"今この瞬間を大切にする感覚が薄れているかもしれません。毎日の小さな幸せに気づく練習が必要です。",
+};
+
+// ══════════════════════════════════
+//  LIFE STAGES（ライフマップ用）
+// ══════════════════════════════════
+const STAGES = [
+  {decade:"30代",color:"#c8956c",name:"キャリアと家族の形成期",theme:"今の選択が、10年後の基盤になる",locked:false,
+    focuses:{couple:["夫婦の対話習慣"],family:["子育て方針の共有"],freedom:["週3日働く準備"],career:["専門性の確立"],default:["夫婦の将来設計","子育ての土台"]}},
+  {decade:"40代",color:"#8b7355",name:"キャリアピークと夫婦の深化",theme:"仕事と家族のバランスが問われる10年",locked:false,
+    focuses:{couple:["夫婦の再発見"],family:["子どもの独立準備"],freedom:["副業・独立の実現"],career:["キャリアのピーク"],default:["仕事×育児の両立","夫婦の関係深化"]}},
+  {decade:"50代",color:"#6b8e8b",name:"転換と再発見の10年",theme:"子どもの独立、夫婦ふたりに戻る",locked:true,
+    focuses:{default:["夫婦ふたりの生活設計","介護・健康の準備"]}},
+  {decade:"60代",color:"#7a7a9e",name:"自由と贈り物の10年",theme:"働き方が変わり、本当にやりたいことへ",locked:true,
+    focuses:{default:["リタイア後の生きがい","次世代への継承"]}},
+  {decade:"70代",color:"#6e8e6b",name:"円熟と感謝の10年",theme:"健康・余暇・つながり",locked:true,
+    focuses:{default:["健康管理","孫との関係"]}},
+  {decade:"80代",color:"#8e6b6b",name:"人生の総括",theme:"この人生を、どう語るか",locked:true,
+    focuses:{default:["人生の総括","感謝の伝達"]}},
+];
+
+// ══════════════════════════════════
+//  STATE
+// ══════════════════════════════════
+let curQ = 0;
+let answers = new Array(QS.length).fill(null);
+let myScores = {};
+let myProfile = null;
+let partnerAnswers = null; // from URL
+let partnerProfile = null;
+
+// ── URL param check ──
+function getParam(k){return new URLSearchParams(location.search).get(k)}
+function setParam(k,v){const u=new URL(location);u.searchParams.set(k,v);history.replaceState({},'',u)}
+function encode(arr){return btoa(arr.join(','))}
+function decode(s){try{return atob(s).split(',').map(Number)}catch{return null}}
+
+// ── Init ──
+window.addEventListener('DOMContentLoaded', ()=>{
+  const p = getParam('p');
+  if(p){ partnerAnswers = decode(p); if(partnerAnswers) showPartnerBanner(); }
+  const saved = localStorage.getItem('mf_answers');
+  if(saved){ document.getElementById('btn-resume').style.display='block'; }
+});
+
+function showPartnerBanner(){
+  document.getElementById('sp-partner').style.display='block';
+}
+
+// ══════════════════════════════════
+//  SCREEN MANAGEMENT
+// ══════════════════════════════════
+function show(toId){
+  document.querySelectorAll('.scr.on').forEach(s=>{
+    s.classList.remove('on'); s.classList.add('out');
+    setTimeout(()=>s.classList.remove('out'),320);
+  });
+  setTimeout(()=>{
+    const el=document.getElementById(toId);
+    el.classList.add('on');
+    el.scrollTop=0;
+  },60);
+}
+function goBack(id){show(id)}
+
+// ══════════════════════════════════
+//  QUIZ
+// ══════════════════════════════════
+function startQuiz(){
+  curQ=0; answers=new Array(QS.length).fill(null); myScores={};
+  renderQ(); show('qq');
+}
+function resumeResult(){
+  const saved=localStorage.getItem('mf_answers');
+  if(!saved)return;
+  answers=JSON.parse(saved);
+  calcScores(); buildResult(); show('rs');
+}
+
+function renderQ(){
+  const q=QS[curQ];
+  // dots
+  const dotsEl=document.getElementById('q-dots');
+  dotsEl.innerHTML='';
+  QS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='q-dot'+(i<curQ?' done':i===curQ?' now':'');
+    dotsEl.appendChild(d);
+  });
+  document.getElementById('q-n').textContent=`${curQ+1} / ${QS.length}`;
+  document.getElementById('q-txt').textContent=q.q;
+  // choices
+  const grid=document.getElementById('q-grid');
+  grid.innerHTML='';
+  q.choices.forEach((c,i)=>{
+    const card=document.createElement('div');
+    card.className='ch'+(answers[curQ]===i?' sel':'');
+    card.onclick=()=>pick(i);
+    const svg = SVGS[getPrimaryKey(c.sc)] || SVGS.self;
+    card.innerHTML=`
+      <div class="ch-img" style="background:linear-gradient(135deg,${c.bg[0]},${c.bg[1]})">
+        ${svg}<div class="ch-ck">✓</div>
+      </div>
+      <div class="ch-lbl">${c.l}</div>`;
+    grid.appendChild(card);
+  });
+  updateNext();
+}
+
+function pick(i){
+  answers[curQ]=i;
+  document.querySelectorAll('.ch').forEach((c,j)=>c.classList.toggle('sel',j===i));
+  updateNext();
+}
+
+function updateNext(){
+  const btn=document.getElementById('btn-next');
+  const ok=answers[curQ]!==null;
+  btn.classList.toggle('on',ok);
+  btn.textContent=curQ===QS.length-1?'結果を見る':'次へ';
+}
+
+function nextQ(){
+  if(answers[curQ]===null)return;
+  if(curQ<QS.length-1){ curQ++; renderQ(); }
+  else { localStorage.setItem('mf_answers',JSON.stringify(answers)); runLoading(); }
+}
+
+// ══════════════════════════════════
+//  SCORING
+// ══════════════════════════════════
+function calcScores(){
+  myScores={};
+  answers.forEach((ai,qi)=>{
+    if(ai===null||ai===undefined)return;
+    const sc=QS[qi].choices[ai].sc;
+    Object.entries(sc).forEach(([k,v])=>{ myScores[k]=(myScores[k]||0)+v; });
+  });
+}
+
+function getProfile(scores){
+  const dims=['couple','family','freedom','career'];
+  const sorted=dims.map(d=>({d,v:scores[d]||0})).sort((a,b)=>b.v-a.v);
+  const primary=sorted[0].d;
+  const secondary=sorted[1].d;
+  const key=`${primary}|${secondary}`;
+  return PROFILES[key] || PROFILES[`${primary}|${dims.find(d=>d!==primary&&d!==secondary)}`] || PROFILES[`${primary}|family`];
+}
+
+function getTension(scores){
+  const all={...scores};
+  // ensure all keys exist
+  ['couple','family','freedom','career','future','self','present'].forEach(k=>{ if(!all[k]) all[k]=0; });
+  const sorted=Object.entries(all).sort((a,b)=>a[1]-b[1]);
+  return TENSION[sorted[0][0]] || TENSION.couple;
+}
+
+// ══════════════════════════════════
+//  LOADING
+// ══════════════════════════════════
+function runLoading(){
+  show('ld');
+  calcScores();
+
+  const barData=[
+    {l:"夫婦の絆",     v:(myScores.couple||0)},
+    {l:"家族との時間", v:(myScores.family||0)},
+    {l:"自由・自己実現",v:(myScores.freedom||0)},
+    {l:"仕事・将来設計",v:(myScores.career||0)},
+    {l:"長期視点",     v:(myScores.future||0)},
+  ];
+  const mx=Math.max(...barData.map(b=>b.v),1);
+
+  const barsEl=document.getElementById('ld-bars');
+  barsEl.innerHTML='';
+  barData.forEach(b=>{
+    const pct=Math.round(b.v/mx*100);
+    const row=document.createElement('div');
+    row.className='ld-row';
+    row.innerHTML=`<div class="ld-lbl"><span>${b.l}</span></div>
+      <div class="ld-bg"><div class="ld-fill" data-t="${pct}"></div></div>`;
+    barsEl.appendChild(row);
+  });
+
+  const tags=answers.map((ai,qi)=>ai!==null?QS[qi].choices[ai].l.replace('\n',''):null).filter(Boolean);
+  const tagsEl=document.getElementById('ld-tags');
+  tagsEl.innerHTML='';
+  tags.forEach(t=>{ const s=document.createElement('span'); s.className='ld-tag'; s.textContent=t; tagsEl.appendChild(s); });
+
+  setTimeout(()=>{ document.querySelectorAll('.ld-fill').forEach(f=>f.style.width=f.dataset.t+'%'); },300);
+  tags.forEach((_,i)=>setTimeout(()=>tagsEl.children[i]?.classList.add('vis'),500+i*160));
+  setTimeout(()=>{ buildResult(); show('rs'); },2800);
+}
+
+// ══════════════════════════════════
+//  RESULT BUILD
+// ══════════════════════════════════
+function buildResult(){
+  myProfile=getProfile(myScores);
+  const tension=getTension(myScores);
+
+  document.getElementById('rs-type').textContent=myProfile.type;
+  document.getElementById('rs-title').textContent=myProfile.title;
+  document.getElementById('rs-tension').textContent=tension;
+
+  const tagsEl=document.getElementById('rs-tags');
+  tagsEl.innerHTML='';
+  myProfile.tags.forEach(t=>{ const s=document.createElement('span'); s.className='rs-tag'; s.textContent=t; tagsEl.appendChild(s); });
+
+  // chart
+  const allDims=[
+    {l:"夫婦の絆",     v:myScores.couple||0},
+    {l:"家族との時間", v:myScores.family||0},
+    {l:"自由・自己実現",v:myScores.freedom||0},
+    {l:"仕事・将来",   v:myScores.career||0},
+    {l:"長期視点",     v:myScores.future||0},
+  ];
+  const mx=Math.max(...allDims.map(d=>d.v),1);
+  const chartEl=document.getElementById('rs-chart');
+  chartEl.innerHTML='';
+  allDims.forEach(d=>{
+    const pct=Math.round(d.v/mx*100);
+    const row=document.createElement('div');
+    row.className='s-row';
+    row.innerHTML=`<span class="s-lbl">${d.l}</span>
+      <div class="s-bg"><div class="s-fill" data-t="${pct}"></div></div>
+      <span class="s-num">${pct}%</span>`;
+    chartEl.appendChild(row);
+  });
+  setTimeout(()=>document.querySelectorAll('.s-fill').forEach(f=>f.style.width=f.dataset.t+'%'),400);
+
+  // life text
+  document.getElementById('rs-life').textContent=myProfile.life;
+
+  // tasks
+  const taskEl=document.getElementById('rs-tasks');
+  taskEl.innerHTML='';
+  myProfile.tasks.forEach(tk=>{
+    const item=document.createElement('div');
+    item.className='task';
+    const ck=document.createElement('div');
+    ck.className='task-ck';
+    ck.textContent='✓';
+    ck.onclick=()=>ck.classList.toggle('ck');
+    item.innerHTML=`<div class="task-ico" style="background:${tk.bg}">${tk.ico}</div>
+      <div class="task-info"><div class="task-t">${tk.t}</div><div class="task-w">${tk.w}</div></div>`;
+    item.appendChild(ck);
+    taskEl.appendChild(item);
+  });
+
+  // if partner data exists, build compare
+  if(partnerAnswers){ buildCompare(); }
+}
+
+// ══════════════════════════════════
+//  SHARE
+// ══════════════════════════════════
+function goShare(){
+  const encoded=encode(answers);
+  const url=`${location.origin}${location.pathname}?p=${encoded}`;
+  document.getElementById('sh-url').textContent=url;
+  show('sh');
+}
+
+function copyUrl(){
+  const url=document.getElementById('sh-url').textContent;
+  navigator.clipboard?.writeText(url).then(()=>alert('URLをコピーしました！\nLINEやメッセージで送ってください。')).catch(()=>{
+    prompt('このURLをコピーして送ってください：',url);
+  });
+}
+
+// ══════════════════════════════════
+//  COMPARE
+// ══════════════════════════════════
+function buildCompare(){
+  if(!partnerAnswers)return;
+  const partnerScores={};
+  partnerAnswers.forEach((ai,qi)=>{
+    if(ai===null||isNaN(ai)||ai<0||ai>3)return;
+    const sc=QS[qi]?.choices[ai]?.sc;
+    if(!sc)return;
+    Object.entries(sc).forEach(([k,v])=>{ partnerScores[k]=(partnerScores[k]||0)+v; });
+  });
+  partnerProfile=getProfile(partnerScores);
+
+  // cards
+  const cardsEl=document.getElementById('cp-cards');
+  cardsEl.innerHTML=`
+    <div class="cp-card">
+      <div class="cp-card-name">あなた</div>
+      <div class="cp-card-type">${myProfile?.type||'—'}</div>
+      <div class="cp-card-title">${myProfile?.title?.replace('\n','') ||'—'}</div>
+    </div>
+    <div class="cp-card">
+      <div class="cp-card-name">パートナー</div>
+      <div class="cp-card-type">${partnerProfile.type}</div>
+      <div class="cp-card-title">${partnerProfile.title.replace('\n','')}</div>
+    </div>`;
+
+  // find matches and diffs
+  const body=document.getElementById('cp-body');
+  body.innerHTML='';
+
+  // section: matches
+  const mLabel=document.createElement('div');
+  mLabel.className='cp-section-label';
+  mLabel.textContent='一致したこと';
+  body.appendChild(mLabel);
+
+  const matches=findMatches(answers,partnerAnswers);
+  matches.slice(0,2).forEach(m=>{
+    const el=document.createElement('div');
+    el.className='match-item';
+    el.innerHTML=`<div class="match-ico">✅</div>
+      <div class="match-body"><h4>${m.topic}</h4><p>${m.desc}</p></div>`;
+    body.appendChild(el);
+  });
+
+  // section: diffs
+  const dLabel=document.createElement('div');
+  dLabel.className='cp-section-label';
+  dLabel.style.marginTop='8px';
+  dLabel.textContent='違いがあった・話すきっかけ';
+  body.appendChild(dLabel);
+
+  const diffs=findDiffs(answers,partnerAnswers);
+  diffs.slice(0,2).forEach(d=>{
+    const el=document.createElement('div');
+    el.className='diff-item';
+    el.innerHTML=`<div class="diff-q">${d.q}</div>
+      <div class="diff-row">
+        <div class="diff-col"><div class="diff-col-name">あなた</div><div class="diff-col-val">${d.mine}</div></div>
+        <div class="diff-col"><div class="diff-col-name">パートナー</div><div class="diff-col-val">${d.partner}</div></div>
+      </div>`;
+    body.appendChild(el);
+  });
+}
+
+function findMatches(mine,partner){
+  const results=[];
+  mine.forEach((ai,qi)=>{
+    if(ai===partner[qi] && ai!==null){
+      results.push({topic:QS[qi].q.replace('\n',''),desc:`ふたりとも「${QS[qi].choices[ai].l.replace('\n','')}」を選びました`});
+    }
+  });
+  if(results.length===0) results.push({topic:"大切にしたいものが共通",desc:"詳細を話し合うと、さらに共通点が見えてきます"});
+  return results;
+}
+
+function findDiffs(mine,partner){
+  const results=[];
+  mine.forEach((ai,qi)=>{
+    if(ai!==partner[qi] && ai!==null && partner[qi]!==null){
+      results.push({
+        q:QS[qi].q.replace('\n',''),
+        mine:QS[qi].choices[ai].l.replace('\n',''),
+        partner:QS[qi].choices[partner[qi]].l.replace('\n',''),
+      });
+    }
+  });
+  return results;
+}
+
+// ══════════════════════════════════
+//  LIFEMAP
+// ══════════════════════════════════
+function goLifeMap(){
+  buildLifeMap(); show('lm');
+}
+
+function buildLifeMap(){
+  const body=document.getElementById('lm-body');
+  body.innerHTML='';
+  const primaryKey=myProfile?Object.keys(PROFILES).find(k=>PROFILES[k]===myProfile)?.split('|')[0]:'default';
+
+  STAGES.forEach(st=>{
+    const card=document.createElement('div');
+    card.className='stage-card'+(st.locked?' locked':'');
+    const focuses=st.focuses[primaryKey]||st.focuses.default||[];
+    const focusHtml=focuses.map(f=>`<span class="focus-tag" style="background:${st.color}22;color:${st.color};border:1px solid ${st.color}44">${f}</span>`).join('');
+
+    card.innerHTML=`
+      <div class="stage-header">
+        <div class="stage-color-bar" style="background:${st.color}"></div>
+        <div class="stage-info">
+          <div class="stage-decade" style="color:${st.color}">${st.decade}</div>
+          <div class="stage-name">${st.name}</div>
+          <div class="stage-theme">${st.theme}</div>
+        </div>
+        ${st.locked?'<div class="stage-lock">🔒</div>':''}
+      </div>
+      ${!st.locked?`
+        <div class="stage-body">
+          <div class="stage-focus">${focusHtml}</div>
+        </div>
+        <div class="stage-cta">
+          <span>このステージの未来日記を書く</span><span>›</span>
+        </div>`:''}`;
+    body.appendChild(card);
+  });
+}
+
+// ── If partner param exists, auto-route after result ──
+function goCompare(){
+  if(partnerAnswers && myProfile){ buildCompare(); show('cp'); }
+}
+</script>
+</body>
+</html>
